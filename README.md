@@ -1,6 +1,6 @@
 # 32-bit RISC-V Processor with UART and VGA on DE10-Lite FPGA
 
-This project implements a custom 32-bit RISC-V processor designed for educational purposes using Verilog. It interfaces with UART for dynamic instruction input and a VGA display to visualize register values in real-time. The processor was developed as part of **EECS 3216: Digital Systems Design** at York University.
+This project implements a custom 32-bit RISC-V processor designed for educational purposes using Verilog. It interfaces with UART for dynamic instruction input and a VGA display to visualize register values in real-time. The processor was developed for our final project for **EECS 3216: Digital Systems Design** at York University.
 
 **Contributors**:
 - Salwan Aldhahab
