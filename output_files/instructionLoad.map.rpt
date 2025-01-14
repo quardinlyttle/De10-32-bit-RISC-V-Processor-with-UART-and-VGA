@@ -1,0 +1,1091 @@
+Analysis & Synthesis report for instructionLoad
+Thu Nov 28 15:21:42 2024
+Quartus Prime Version 22.1std.0 Build 915 10/25/2022 SC Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. State Machine - |DE10_LITE_Golden_Top|registerFile:rf1|curr_state
+  9. State Machine - |DE10_LITE_Golden_Top|dataMemory:dm1|curr_wb_state
+ 10. State Machine - |DE10_LITE_Golden_Top|dataMemory:dm1|curr_mem_state
+ 11. State Machine - |DE10_LITE_Golden_Top|dataMemory:dm1|curr_exmem_state
+ 12. State Machine - |DE10_LITE_Golden_Top|controlALU:al1|curr_exmem_state
+ 13. State Machine - |DE10_LITE_Golden_Top|controlALU:al1|curr_alu_state
+ 14. State Machine - |DE10_LITE_Golden_Top|controlALU:al1|curr_ex_state
+ 15. State Machine - |DE10_LITE_Golden_Top|instructionDecoder:id1|curr_idex_state
+ 16. State Machine - |DE10_LITE_Golden_Top|instructionDecoder:id1|curr_dec_state
+ 17. State Machine - |DE10_LITE_Golden_Top|instructionDecoder:id1|curr_id_state
+ 18. State Machine - |DE10_LITE_Golden_Top|instructionFetch:if1|curr_if_state
+ 19. State Machine - |DE10_LITE_Golden_Top|instructionFetch:if1|curr_fetch_state
+ 20. State Machine - |DE10_LITE_Golden_Top|instructionFetch:if1|curr_pc_state
+ 21. State Machine - |DE10_LITE_Golden_Top|instructionLoad:il|curr_state
+ 22. State Machine - |DE10_LITE_Golden_Top|serial_comm:serial_comm_inst|rx_fsm_state
+ 23. Registers Removed During Synthesis
+ 24. General Register Statistics
+ 25. Inverted Register Statistics
+ 26. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 27. Parameter Settings for User Entity Instance: serial_comm:serial_comm_inst
+ 28. Parameter Settings for User Entity Instance: instructionLoad:il
+ 29. Parameter Settings for User Entity Instance: instructionFetch:if1
+ 30. Parameter Settings for User Entity Instance: instructionDecoder:id1
+ 31. Parameter Settings for User Entity Instance: controlALU:al1
+ 32. Parameter Settings for User Entity Instance: dataMemory:dm1
+ 33. Parameter Settings for User Entity Instance: registerFile:rf1
+ 34. Port Connectivity Checks: "dataMemory:dm1"
+ 35. Port Connectivity Checks: "controlALU:al1"
+ 36. Port Connectivity Checks: "instructionDecoder:id1"
+ 37. Port Connectivity Checks: "instructionFetch:if1"
+ 38. Port Connectivity Checks: "instructionLoad:il"
+ 39. Post-Synthesis Netlist Statistics for Top Partition
+ 40. Elapsed Time Per Partition
+ 41. Analysis & Synthesis Messages
+ 42. Analysis & Synthesis Suppressed Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2022  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details, at
+https://fpgasoftware.intel.com/eula.
+
+
+
++-------------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                        ;
++------------------------------------+------------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Thu Nov 28 15:21:42 2024          ;
+; Quartus Prime Version              ; 22.1std.0 Build 915 10/25/2022 SC Lite Edition ;
+; Revision Name                      ; instructionLoad                                ;
+; Top-level Entity Name              ; DE10_LITE_Golden_Top                           ;
+; Family                             ; MAX 10                                         ;
+; Total logic elements               ; 4,178                                          ;
+;     Total combinational functions  ; 2,397                                          ;
+;     Dedicated logic registers      ; 2,152                                          ;
+; Total registers                    ; 2152                                           ;
+; Total pins                         ; 185                                            ;
+; Total virtual pins                 ; 0                                              ;
+; Total memory bits                  ; 0                                              ;
+; Embedded Multiplier 9-bit elements ; 0                                              ;
+; Total PLLs                         ; 0                                              ;
+; UFM blocks                         ; 0                                              ;
+; ADC blocks                         ; 0                                              ;
++------------------------------------+------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                ;
++------------------------------------------------------------------+----------------------+--------------------+
+; Option                                                           ; Setting              ; Default Value      ;
++------------------------------------------------------------------+----------------------+--------------------+
+; Device                                                           ; 10M50DAF484C7G       ;                    ;
+; Top-level entity name                                            ; DE10_LITE_Golden_Top ; instructionLoad    ;
+; Family name                                                      ; MAX 10               ; Cyclone V          ;
+; Use smart compilation                                            ; Off                  ; Off                ;
+; Enable parallel Assembler and Timing Analyzer during compilation ; On                   ; On                 ;
+; Enable compact report table                                      ; Off                  ; Off                ;
+; Restructure Multiplexers                                         ; Auto                 ; Auto               ;
+; Create Debugging Nodes for IP Cores                              ; Off                  ; Off                ;
+; Preserve fewer node names                                        ; On                   ; On                 ;
+; Intel FPGA IP Evaluation Mode                                    ; Enable               ; Enable             ;
+; Verilog Version                                                  ; Verilog_2001         ; Verilog_2001       ;
+; VHDL Version                                                     ; VHDL_1993            ; VHDL_1993          ;
+; State Machine Processing                                         ; Auto                 ; Auto               ;
+; Safe State Machine                                               ; Off                  ; Off                ;
+; Extract Verilog State Machines                                   ; On                   ; On                 ;
+; Extract VHDL State Machines                                      ; On                   ; On                 ;
+; Ignore Verilog initial constructs                                ; Off                  ; Off                ;
+; Iteration limit for constant Verilog loops                       ; 5000                 ; 5000               ;
+; Iteration limit for non-constant Verilog loops                   ; 250                  ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                          ; On                   ; On                 ;
+; Infer RAMs from Raw Logic                                        ; On                   ; On                 ;
+; Parallel Synthesis                                               ; On                   ; On                 ;
+; DSP Block Balancing                                              ; Auto                 ; Auto               ;
+; NOT Gate Push-Back                                               ; On                   ; On                 ;
+; Power-Up Don't Care                                              ; On                   ; On                 ;
+; Remove Redundant Logic Cells                                     ; Off                  ; Off                ;
+; Remove Duplicate Registers                                       ; On                   ; On                 ;
+; Ignore CARRY Buffers                                             ; Off                  ; Off                ;
+; Ignore CASCADE Buffers                                           ; Off                  ; Off                ;
+; Ignore GLOBAL Buffers                                            ; Off                  ; Off                ;
+; Ignore ROW GLOBAL Buffers                                        ; Off                  ; Off                ;
+; Ignore LCELL Buffers                                             ; Off                  ; Off                ;
+; Ignore SOFT Buffers                                              ; On                   ; On                 ;
+; Limit AHDL Integers to 32 Bits                                   ; Off                  ; Off                ;
+; Optimization Technique                                           ; Balanced             ; Balanced           ;
+; Carry Chain Length                                               ; 70                   ; 70                 ;
+; Auto Carry Chains                                                ; On                   ; On                 ;
+; Auto Open-Drain Pins                                             ; On                   ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                            ; Off                  ; Off                ;
+; Auto ROM Replacement                                             ; On                   ; On                 ;
+; Auto RAM Replacement                                             ; On                   ; On                 ;
+; Auto DSP Block Replacement                                       ; On                   ; On                 ;
+; Auto Shift Register Replacement                                  ; Auto                 ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                  ; Auto                 ; Auto               ;
+; Auto Clock Enable Replacement                                    ; On                   ; On                 ;
+; Strict RAM Replacement                                           ; Off                  ; Off                ;
+; Allow Synchronous Control Signals                                ; On                   ; On                 ;
+; Force Use of Synchronous Clear Signals                           ; Off                  ; Off                ;
+; Auto RAM Block Balancing                                         ; On                   ; On                 ;
+; Auto RAM to Logic Cell Conversion                                ; Off                  ; Off                ;
+; Auto Resource Sharing                                            ; Off                  ; Off                ;
+; Allow Any RAM Size For Recognition                               ; Off                  ; Off                ;
+; Allow Any ROM Size For Recognition                               ; Off                  ; Off                ;
+; Allow Any Shift Register Size For Recognition                    ; Off                  ; Off                ;
+; Use LogicLock Constraints during Resource Balancing              ; On                   ; On                 ;
+; Ignore translate_off and synthesis_off directives                ; Off                  ; Off                ;
+; Timing-Driven Synthesis                                          ; On                   ; On                 ;
+; Report Parameter Settings                                        ; On                   ; On                 ;
+; Report Source Assignments                                        ; On                   ; On                 ;
+; Report Connectivity Checks                                       ; On                   ; On                 ;
+; Ignore Maximum Fan-Out Assignments                               ; Off                  ; Off                ;
+; Synchronization Register Chain Length                            ; 2                    ; 2                  ;
+; Power Optimization During Synthesis                              ; Normal compilation   ; Normal compilation ;
+; HDL message level                                                ; Level2               ; Level2             ;
+; Suppress Register Optimization Related Messages                  ; Off                  ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report         ; 5000                 ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report               ; 5000                 ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report        ; 100                  ; 100                ;
+; Clock MUX Protection                                             ; On                   ; On                 ;
+; Auto Gated Clock Conversion                                      ; Off                  ; Off                ;
+; Block Design Naming                                              ; Auto                 ; Auto               ;
+; SDC constraint protection                                        ; Off                  ; Off                ;
+; Synthesis Effort                                                 ; Auto                 ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal     ; On                   ; On                 ;
+; Pre-Mapping Resynthesis Optimization                             ; Off                  ; Off                ;
+; Analysis & Synthesis Message Level                               ; Medium               ; Medium             ;
+; Disable Register Merging Across Hierarchies                      ; Auto                 ; Auto               ;
+; Resource Aware Inference For Block RAM                           ; On                   ; On                 ;
++------------------------------------------------------------------+----------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 6           ;
+; Maximum allowed            ; 6           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 6           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processor 2            ;   0.1%      ;
+;     Processor 3            ;   0.1%      ;
+;     Processor 4            ;   0.1%      ;
+;     Processor 5            ;   0.1%      ;
+;     Processor 6            ;   0.0%      ;
++----------------------------+-------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                                                              ;
++----------------------------------+-----------------+------------------------+---------------------------------------------------------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path                                                                                                                ; Library ;
++----------------------------------+-----------------+------------------------+---------------------------------------------------------------------------------------------------------------------------------------------+---------+
+; rtl/dataMemory.v                 ; yes             ; User Verilog HDL File  ; G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/dataMemory.v              ;         ;
+; rtl/serial_comm.v                ; yes             ; User Verilog HDL File  ; G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/serial_comm.v             ;         ;
+; rtl/DE10_LITE_Golden_Top.v       ; yes             ; User Verilog HDL File  ; G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v    ;         ;
+; rtl/ascii_to_bits_converter.v    ; yes             ; User Verilog HDL File  ; G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/ascii_to_bits_converter.v ;         ;
+; rtl/registerFile.v               ; yes             ; User Verilog HDL File  ; G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/registerFile.v            ;         ;
+; rtl/instructionDecoder.v         ; yes             ; User Verilog HDL File  ; G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/instructionDecoder.v      ;         ;
+; rtl/controlALU.v                 ; yes             ; User Verilog HDL File  ; G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/controlALU.v              ;         ;
+; rtl/instructionFetch.v           ; yes             ; User Verilog HDL File  ; G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/instructionFetch.v        ;         ;
+; rtl/instructionLoad.v            ; yes             ; User Verilog HDL File  ; G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/instructionLoad.v         ;         ;
++----------------------------------+-----------------+------------------------+---------------------------------------------------------------------------------------------------------------------------------------------+---------+
+
+
++-------------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                       ;
++---------------------------------------------+---------------------+
+; Resource                                    ; Usage               ;
++---------------------------------------------+---------------------+
+; Estimated Total logic elements              ; 4,178               ;
+;                                             ;                     ;
+; Total combinational functions               ; 2397                ;
+; Logic element usage by number of LUT inputs ;                     ;
+;     -- 4 input functions                    ; 1687                ;
+;     -- 3 input functions                    ; 564                 ;
+;     -- <=2 input functions                  ; 146                 ;
+;                                             ;                     ;
+; Logic elements by mode                      ;                     ;
+;     -- normal mode                          ; 2276                ;
+;     -- arithmetic mode                      ; 121                 ;
+;                                             ;                     ;
+; Total registers                             ; 2152                ;
+;     -- Dedicated logic registers            ; 2152                ;
+;     -- I/O registers                        ; 0                   ;
+;                                             ;                     ;
+; I/O pins                                    ; 185                 ;
+;                                             ;                     ;
+; Embedded Multiplier 9-bit elements          ; 0                   ;
+;                                             ;                     ;
+; Maximum fan-out node                        ; MAX10_CLK1_50~input ;
+; Maximum fan-out                             ; 2152                ;
+; Total fan-out                               ; 16005               ;
+; Average fan-out                             ; 3.21                ;
++---------------------------------------------+---------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                  ;
++-----------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+----------------------------------------------------+-------------------------+--------------+
+; Compilation Hierarchy Node        ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; ADC blocks ; Full Hierarchy Name                                ; Entity Name             ; Library Name ;
++-----------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+----------------------------------------------------+-------------------------+--------------+
+; |DE10_LITE_Golden_Top             ; 2397 (1)            ; 2152 (9)                  ; 0           ; 0          ; 0            ; 0       ; 0         ; 185  ; 0            ; 0          ; |DE10_LITE_Golden_Top                              ; DE10_LITE_Golden_Top    ; work         ;
+;    |ascii_to_bits_converter:test| ; 12 (12)             ; 38 (38)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |DE10_LITE_Golden_Top|ascii_to_bits_converter:test ; ascii_to_bits_converter ; work         ;
+;    |controlALU:al1|               ; 756 (756)           ; 164 (164)                 ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |DE10_LITE_Golden_Top|controlALU:al1               ; controlALU              ; work         ;
+;    |dataMemory:dm1|               ; 447 (447)           ; 671 (671)                 ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |DE10_LITE_Golden_Top|dataMemory:dm1               ; dataMemory              ; work         ;
+;    |instructionDecoder:id1|       ; 401 (401)           ; 240 (240)                 ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |DE10_LITE_Golden_Top|instructionDecoder:id1       ; instructionDecoder      ; work         ;
+;    |instructionFetch:if1|         ; 222 (222)           ; 374 (374)                 ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |DE10_LITE_Golden_Top|instructionFetch:if1         ; instructionFetch        ; work         ;
+;    |instructionLoad:il|           ; 39 (39)             ; 42 (42)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |DE10_LITE_Golden_Top|instructionLoad:il           ; instructionLoad         ; work         ;
+;    |registerFile:rf1|             ; 430 (430)           ; 551 (551)                 ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |DE10_LITE_Golden_Top|registerFile:rf1             ; registerFile            ; work         ;
+;    |serial_comm:serial_comm_inst| ; 89 (89)             ; 63 (63)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |DE10_LITE_Golden_Top|serial_comm:serial_comm_inst ; serial_comm             ; work         ;
++-----------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+----------------------------------------------------+-------------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
+Encoding Type:  One-Hot
++-----------------------------------------------------------------------------------------------+
+; State Machine - |DE10_LITE_Golden_Top|registerFile:rf1|curr_state                             ;
++-------------------+------------------+------------------+-------------------+-----------------+
+; Name              ; curr_state.FLUSH ; curr_state.WRITE ; curr_state.BUFFER ; curr_state.IDLE ;
++-------------------+------------------+------------------+-------------------+-----------------+
+; curr_state.IDLE   ; 0                ; 0                ; 0                 ; 0               ;
+; curr_state.BUFFER ; 0                ; 0                ; 1                 ; 1               ;
+; curr_state.WRITE  ; 0                ; 1                ; 0                 ; 1               ;
+; curr_state.FLUSH  ; 1                ; 0                ; 0                 ; 1               ;
++-------------------+------------------+------------------+-------------------+-----------------+
+
+
+Encoding Type:  One-Hot
++--------------------------------------------------------------------+
+; State Machine - |DE10_LITE_Golden_Top|dataMemory:dm1|curr_wb_state ;
++------------------------+-------------------------------------------+
+; Name                   ; curr_wb_state.STORE_WB                    ;
++------------------------+-------------------------------------------+
+; curr_wb_state.IDLE_WB  ; 0                                         ;
+; curr_wb_state.STORE_WB ; 1                                         ;
++------------------------+-------------------------------------------+
+
+
+Encoding Type:  One-Hot
++--------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |DE10_LITE_Golden_Top|dataMemory:dm1|curr_mem_state                                                                        ;
++-------------------------+----------------------+---------------------+---------------------+-------------------------+---------------------+
+; Name                    ; curr_mem_state.WRITE ; curr_mem_state.READ ; curr_mem_state.HOLD ; curr_mem_state.IDLE_MEM ; curr_mem_state.PASS ;
++-------------------------+----------------------+---------------------+---------------------+-------------------------+---------------------+
+; curr_mem_state.IDLE_MEM ; 0                    ; 0                   ; 0                   ; 0                       ; 0                   ;
+; curr_mem_state.HOLD     ; 0                    ; 0                   ; 1                   ; 1                       ; 0                   ;
+; curr_mem_state.READ     ; 0                    ; 1                   ; 0                   ; 1                       ; 0                   ;
+; curr_mem_state.WRITE    ; 1                    ; 0                   ; 0                   ; 1                       ; 0                   ;
+; curr_mem_state.PASS     ; 0                    ; 0                   ; 0                   ; 1                       ; 1                   ;
++-------------------------+----------------------+---------------------+---------------------+-------------------------+---------------------+
+
+
+Encoding Type:  One-Hot
++-------------------------------------------------------------------------------------------------------------+
+; State Machine - |DE10_LITE_Golden_Top|dataMemory:dm1|curr_exmem_state                                       ;
++-----------------------------+-----------------------------+------------------------+------------------------+
+; Name                        ; curr_exmem_state.IDLE_EXMEM ; curr_exmem_state.FLUSH ; curr_exmem_state.STORE ;
++-----------------------------+-----------------------------+------------------------+------------------------+
+; curr_exmem_state.IDLE_EXMEM ; 0                           ; 0                      ; 0                      ;
+; curr_exmem_state.STORE      ; 1                           ; 0                      ; 1                      ;
+; curr_exmem_state.FLUSH      ; 1                           ; 1                      ; 0                      ;
++-----------------------------+-----------------------------+------------------------+------------------------+
+
+
+Encoding Type:  One-Hot
++-----------------------------------------------------------------------+
+; State Machine - |DE10_LITE_Golden_Top|controlALU:al1|curr_exmem_state ;
++------------------------------+----------------------------------------+
+; Name                         ; curr_exmem_state.STORE_EXMEM           ;
++------------------------------+----------------------------------------+
+; curr_exmem_state.IDLE_EXMEM  ; 0                                      ;
+; curr_exmem_state.STORE_EXMEM ; 1                                      ;
++------------------------------+----------------------------------------+
+
+
+Encoding Type:  One-Hot
++----------------------------------------------------------------------------------------------+
+; State Machine - |DE10_LITE_Golden_Top|controlALU:al1|curr_alu_state                          ;
++-------------------------+-------------------------+---------------------+--------------------+
+; Name                    ; curr_alu_state.IDLE_ALU ; curr_alu_state.PASS ; curr_alu_state.ALU ;
++-------------------------+-------------------------+---------------------+--------------------+
+; curr_alu_state.IDLE_ALU ; 0                       ; 0                   ; 0                  ;
+; curr_alu_state.ALU      ; 1                       ; 0                   ; 1                  ;
+; curr_alu_state.PASS     ; 1                       ; 1                   ; 0                  ;
++-------------------------+-------------------------+---------------------+--------------------+
+
+
+Encoding Type:  One-Hot
++-------------------------------------------------------------------------------------------+
+; State Machine - |DE10_LITE_Golden_Top|controlALU:al1|curr_ex_state                        ;
++-----------------------+-----------------------+---------------------+---------------------+
+; Name                  ; curr_ex_state.IDLE_EX ; curr_ex_state.FLUSH ; curr_ex_state.STORE ;
++-----------------------+-----------------------+---------------------+---------------------+
+; curr_ex_state.IDLE_EX ; 0                     ; 0                   ; 0                   ;
+; curr_ex_state.STORE   ; 1                     ; 0                   ; 1                   ;
+; curr_ex_state.FLUSH   ; 1                     ; 1                   ; 0                   ;
++-----------------------+-----------------------+---------------------+---------------------+
+
+
+Encoding Type:  One-Hot
++------------------------------------------------------------------------------+
+; State Machine - |DE10_LITE_Golden_Top|instructionDecoder:id1|curr_idex_state ;
++----------------------------+-------------------------------------------------+
+; Name                       ; curr_idex_state.STORE_IDEX                      ;
++----------------------------+-------------------------------------------------+
+; curr_idex_state.IDLE_IDEX  ; 0                                               ;
+; curr_idex_state.STORE_IDEX ; 1                                               ;
++----------------------------+-------------------------------------------------+
+
+
+Encoding Type:  One-Hot
++------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |DE10_LITE_Golden_Top|instructionDecoder:id1|curr_dec_state                                            ;
++-------------------------+---------------------+-----------------------+----------------------+-------------------------+
+; Name                    ; curr_dec_state.PASS ; curr_dec_state.DECODE ; curr_dec_state.SPLIT ; curr_dec_state.IDLE_DEC ;
++-------------------------+---------------------+-----------------------+----------------------+-------------------------+
+; curr_dec_state.IDLE_DEC ; 0                   ; 0                     ; 0                    ; 0                       ;
+; curr_dec_state.SPLIT    ; 0                   ; 0                     ; 1                    ; 1                       ;
+; curr_dec_state.DECODE   ; 0                   ; 1                     ; 0                    ; 1                       ;
+; curr_dec_state.PASS     ; 1                   ; 0                     ; 0                    ; 1                       ;
++-------------------------+---------------------+-----------------------+----------------------+-------------------------+
+
+
+Encoding Type:  One-Hot
++-------------------------------------------------------------------------------------------+
+; State Machine - |DE10_LITE_Golden_Top|instructionDecoder:id1|curr_id_state                ;
++-----------------------+-----------------------+---------------------+---------------------+
+; Name                  ; curr_id_state.IDLE_ID ; curr_id_state.FLUSH ; curr_id_state.STORE ;
++-----------------------+-----------------------+---------------------+---------------------+
+; curr_id_state.IDLE_ID ; 0                     ; 0                   ; 0                   ;
+; curr_id_state.STORE   ; 1                     ; 0                   ; 1                   ;
+; curr_id_state.FLUSH   ; 1                     ; 1                   ; 0                   ;
++-----------------------+-----------------------+---------------------+---------------------+
+
+
+Encoding Type:  One-Hot
++--------------------------------------------------------------------------+
+; State Machine - |DE10_LITE_Golden_Top|instructionFetch:if1|curr_if_state ;
++--------------------------+-----------------------------------------------+
+; Name                     ; curr_if_state.STORE                           ;
++--------------------------+-----------------------------------------------+
+; curr_if_state.IDLE_IF_ID ; 0                                             ;
+; curr_if_state.STORE      ; 1                                             ;
++--------------------------+-----------------------------------------------+
+
+
+Encoding Type:  One-Hot
++------------------------------------------------------------------------------------------------------+
+; State Machine - |DE10_LITE_Golden_Top|instructionFetch:if1|curr_fetch_state                          ;
++--------------------------+--------------------------+-----------------------+------------------------+
+; Name                     ; curr_fetch_state.IDLE_IF ; curr_fetch_state.PASS ; curr_fetch_state.FETCH ;
++--------------------------+--------------------------+-----------------------+------------------------+
+; curr_fetch_state.IDLE_IF ; 0                        ; 0                     ; 0                      ;
+; curr_fetch_state.FETCH   ; 1                        ; 0                     ; 1                      ;
+; curr_fetch_state.PASS    ; 1                        ; 1                     ; 0                      ;
++--------------------------+--------------------------+-----------------------+------------------------+
+
+
+Encoding Type:  One-Hot
++--------------------------------------------------------------------------+
+; State Machine - |DE10_LITE_Golden_Top|instructionFetch:if1|curr_pc_state ;
++-----------------------+--------------------------------------------------+
+; Name                  ; curr_pc_state.INCR                               ;
++-----------------------+--------------------------------------------------+
+; curr_pc_state.IDLE_PC ; 0                                                ;
+; curr_pc_state.INCR    ; 1                                                ;
++-----------------------+--------------------------------------------------+
+
+
+Encoding Type:  One-Hot
++-------------------------------------------------------------------------------------------------------+
+; State Machine - |DE10_LITE_Golden_Top|instructionLoad:il|curr_state                                   ;
++----------------------+----------------------+------------------+--------------------+-----------------+
+; Name                 ; curr_state.ADDR_INCR ; curr_state.WRITE ; curr_state.RECEIVE ; curr_state.IDLE ;
++----------------------+----------------------+------------------+--------------------+-----------------+
+; curr_state.IDLE      ; 0                    ; 0                ; 0                  ; 0               ;
+; curr_state.RECEIVE   ; 0                    ; 0                ; 1                  ; 1               ;
+; curr_state.WRITE     ; 0                    ; 1                ; 0                  ; 1               ;
+; curr_state.ADDR_INCR ; 1                    ; 0                ; 0                  ; 1               ;
++----------------------+----------------------+------------------+--------------------+-----------------+
+
+
+Encoding Type:  One-Hot
++------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |DE10_LITE_Golden_Top|serial_comm:serial_comm_inst|rx_fsm_state                                                          ;
++------------------------------+--------------------------+--------------------------+------------------------------+----------------------+
+; Name                         ; rx_fsm_state.RX_COMPLETE ; rx_fsm_state.RX_FETCHING ; rx_fsm_state.RX_VERIFY_START ; rx_fsm_state.RX_IDLE ;
++------------------------------+--------------------------+--------------------------+------------------------------+----------------------+
+; rx_fsm_state.RX_IDLE         ; 0                        ; 0                        ; 0                            ; 0                    ;
+; rx_fsm_state.RX_VERIFY_START ; 0                        ; 0                        ; 1                            ; 1                    ;
+; rx_fsm_state.RX_FETCHING     ; 0                        ; 1                        ; 0                            ; 1                    ;
+; rx_fsm_state.RX_COMPLETE     ; 1                        ; 0                        ; 0                            ; 1                    ;
++------------------------------+--------------------------+--------------------------+------------------------------+----------------------+
+
+
++--------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                         ;
++---------------------------------------------------+----------------------------------------+
+; Register name                                     ; Reason for Removal                     ;
++---------------------------------------------------+----------------------------------------+
+; registerFile:rf1|r_data_ready_delay[2]            ; Stuck at GND due to stuck port data_in ;
+; instructionFetch:if1|r_write_enable[2]            ; Stuck at GND due to stuck port data_in ;
+; instructionFetch:if1|curr_load_state[1]           ; Stuck at GND due to stuck port data_in ;
+; serial_comm:serial_comm_inst|tx_shift_register[9] ; Stuck at VCC due to stuck port data_in ;
+; registerFile:rf1|curr_state~4                     ; Lost fanout                            ;
+; registerFile:rf1|curr_state~5                     ; Lost fanout                            ;
+; dataMemory:dm1|curr_wb_state~5                    ; Lost fanout                            ;
+; dataMemory:dm1|curr_mem_state~4                   ; Lost fanout                            ;
+; dataMemory:dm1|curr_mem_state~5                   ; Lost fanout                            ;
+; controlALU:al1|curr_exmem_state~5                 ; Lost fanout                            ;
+; instructionDecoder:id1|curr_idex_state~5          ; Lost fanout                            ;
+; instructionDecoder:id1|curr_dec_state~4           ; Lost fanout                            ;
+; instructionDecoder:id1|curr_dec_state~5           ; Lost fanout                            ;
+; instructionDecoder:id1|curr_dec_state~6           ; Lost fanout                            ;
+; instructionFetch:if1|curr_if_state~5              ; Lost fanout                            ;
+; instructionFetch:if1|curr_pc_state~5              ; Lost fanout                            ;
+; instructionLoad:il|curr_state~4                   ; Lost fanout                            ;
+; instructionLoad:il|curr_state~5                   ; Lost fanout                            ;
+; serial_comm:serial_comm_inst|rx_fsm_state~8       ; Lost fanout                            ;
+; serial_comm:serial_comm_inst|rx_fsm_state~9       ; Lost fanout                            ;
+; Total Number of Removed Registers = 20            ;                                        ;
++---------------------------------------------------+----------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 2152  ;
+; Number of registers using Synchronous Clear  ; 34    ;
+; Number of registers using Synchronous Load   ; 80    ;
+; Number of registers using Asynchronous Clear ; 579   ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 1965  ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++---------------------------------------------------+
+; Inverted Register Statistics                      ;
++-----------------------------------------+---------+
+; Inverted Register                       ; Fan out ;
++-----------------------------------------+---------+
+; serial_comm:serial_comm_inst|tx_stream  ; 2       ;
+; serial_comm:serial_comm_inst|tx_idle    ; 2       ;
+; registerFile:rf1|reg_array[11][3]       ; 2       ;
+; registerFile:rf1|reg_array[3][3]        ; 2       ;
+; registerFile:rf1|reg_array[5][2]        ; 2       ;
+; registerFile:rf1|reg_array[11][2]       ; 2       ;
+; registerFile:rf1|reg_array[1][1]        ; 2       ;
+; registerFile:rf1|reg_array[2][1]        ; 2       ;
+; registerFile:rf1|reg_array[11][1]       ; 2       ;
+; registerFile:rf1|reg_array[3][1]        ; 2       ;
+; registerFile:rf1|reg_array[11][0]       ; 2       ;
+; registerFile:rf1|reg_array[5][0]        ; 2       ;
+; registerFile:rf1|reg_array[2][0]        ; 2       ;
+; instructionFetch:if1|r_enable_fetch     ; 2       ;
+; instructionFetch:if1|r_enable_pc        ; 3       ;
+; Total number of inverted registers = 15 ;         ;
++-----------------------------------------+---------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                        ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                              ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------------+
+; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |DE10_LITE_Golden_Top|serial_comm:serial_comm_inst|tx_bit_counter[0]    ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 7 LEs                ; 7 LEs                  ; Yes        ; |DE10_LITE_Golden_Top|serial_comm:serial_comm_inst|tx_shift_register[6] ;
+; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |DE10_LITE_Golden_Top|ascii_to_bits_converter:test|bit_counter[1]       ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |DE10_LITE_Golden_Top|dataMemory:dm1|r_data_write[6]                    ;
+; 4:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |DE10_LITE_Golden_Top|serial_comm:serial_comm_inst|tx_clk_counter[2]    ;
+; 5:1                ; 3 bits    ; 9 LEs         ; 3 LEs                ; 6 LEs                  ; Yes        ; |DE10_LITE_Golden_Top|serial_comm:serial_comm_inst|rx_bit_counter[2]    ;
+; 33:1               ; 25 bits   ; 550 LEs       ; 25 LEs               ; 525 LEs                ; Yes        ; |DE10_LITE_Golden_Top|instructionDecoder:id1|rs2[0]                     ;
+; 33:1               ; 12 bits   ; 264 LEs       ; 12 LEs               ; 252 LEs                ; Yes        ; |DE10_LITE_Golden_Top|instructionDecoder:id1|r_operand2[2]              ;
+; 6:1                ; 4 bits    ; 16 LEs        ; 4 LEs                ; 12 LEs                 ; Yes        ; |DE10_LITE_Golden_Top|serial_comm:serial_comm_inst|rx_clk_counter[1]    ;
+; 128:1              ; 2 bits    ; 170 LEs       ; 4 LEs                ; 166 LEs                ; Yes        ; |DE10_LITE_Golden_Top|instructionDecoder:id1|r_mem_write                ;
+; 65:1               ; 7 bits    ; 301 LEs       ; 7 LEs                ; 294 LEs                ; Yes        ; |DE10_LITE_Golden_Top|instructionDecoder:id1|funct7[2]                  ;
+; 65:1               ; 7 bits    ; 301 LEs       ; 7 LEs                ; 294 LEs                ; Yes        ; |DE10_LITE_Golden_Top|instructionDecoder:id1|imm[6]                     ;
+; 65:1               ; 5 bits    ; 215 LEs       ; 5 LEs                ; 210 LEs                ; Yes        ; |DE10_LITE_Golden_Top|instructionDecoder:id1|r_operand1[1]              ;
+; 66:1               ; 5 bits    ; 220 LEs       ; 10 LEs               ; 210 LEs                ; Yes        ; |DE10_LITE_Golden_Top|instructionDecoder:id1|imm[4]                     ;
+; 68:1               ; 5 bits    ; 225 LEs       ; 10 LEs               ; 215 LEs                ; Yes        ; |DE10_LITE_Golden_Top|instructionDecoder:id1|rd[2]                      ;
+; 81:1               ; 27 bits   ; 1458 LEs      ; 324 LEs              ; 1134 LEs               ; Yes        ; |DE10_LITE_Golden_Top|instructionDecoder:id1|r_operand1[28]             ;
+; 25:1               ; 7 bits    ; 112 LEs       ; 56 LEs               ; 56 LEs                 ; Yes        ; |DE10_LITE_Golden_Top|controlALU:al1|r_result[18]                       ;
+; 24:1               ; 8 bits    ; 128 LEs       ; 56 LEs               ; 72 LEs                 ; Yes        ; |DE10_LITE_Golden_Top|controlALU:al1|r_result[15]                       ;
+; 26:1               ; 4 bits    ; 68 LEs        ; 32 LEs               ; 36 LEs                 ; Yes        ; |DE10_LITE_Golden_Top|controlALU:al1|r_result[24]                       ;
+; 25:1               ; 4 bits    ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |DE10_LITE_Golden_Top|controlALU:al1|r_result[6]                        ;
+; 27:1               ; 2 bits    ; 36 LEs        ; 18 LEs               ; 18 LEs                 ; Yes        ; |DE10_LITE_Golden_Top|controlALU:al1|r_result[29]                       ;
+; 26:1               ; 2 bits    ; 34 LEs        ; 16 LEs               ; 18 LEs                 ; Yes        ; |DE10_LITE_Golden_Top|controlALU:al1|r_result[2]                        ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |DE10_LITE_Golden_Top|instructionFetch:if1|next_pc_state.IDLE_PC        ;
+; 3:1                ; 31 bits   ; 62 LEs        ; 0 LEs                ; 62 LEs                 ; No         ; |DE10_LITE_Golden_Top|controlALU:al1|Add0                               ;
+; 17:1               ; 5 bits    ; 55 LEs        ; 55 LEs               ; 0 LEs                  ; No         ; |DE10_LITE_Golden_Top|registerFile:rf1|Mux31                            ;
+; 17:1               ; 32 bits   ; 352 LEs       ; 352 LEs              ; 0 LEs                  ; No         ; |DE10_LITE_Golden_Top|registerFile:rf1|Mux32                            ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 4 LEs                ; 2 LEs                  ; No         ; |DE10_LITE_Golden_Top|dataMemory:dm1|Selector9                          ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 6 LEs                ; 2 LEs                  ; No         ; |DE10_LITE_Golden_Top|dataMemory:dm1|Selector8                          ;
+; 9:1                ; 2 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; No         ; |DE10_LITE_Golden_Top|serial_comm:serial_comm_inst|rx_fsm_state         ;
+; 9:1                ; 2 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; No         ; |DE10_LITE_Golden_Top|serial_comm:serial_comm_inst|rx_fsm_state         ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; No         ; |DE10_LITE_Golden_Top|controlALU:al1|Add0                               ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: serial_comm:serial_comm_inst ;
++----------------+----------+-----------------------------------------------+
+; Parameter Name ; Value    ; Type                                          ;
++----------------+----------+-----------------------------------------------+
+; SYS_CLK        ; 50000000 ; Signed Integer                                ;
+; BAUD_RATE      ; 9600     ; Signed Integer                                ;
++----------------+----------+-----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: instructionLoad:il ;
++----------------+-------+----------------------------------------+
+; Parameter Name ; Value ; Type                                   ;
++----------------+-------+----------------------------------------+
+; IDLE           ; 00    ; Unsigned Binary                        ;
+; RECEIVE        ; 01    ; Unsigned Binary                        ;
+; WRITE          ; 10    ; Unsigned Binary                        ;
+; ADDR_INCR      ; 11    ; Unsigned Binary                        ;
++----------------+-------+----------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: instructionFetch:if1 ;
++----------------+-------+------------------------------------------+
+; Parameter Name ; Value ; Type                                     ;
++----------------+-------+------------------------------------------+
+; IDLE_IM        ; 00    ; Unsigned Binary                          ;
+; RECEIVE        ; 01    ; Unsigned Binary                          ;
+; IDLE_PC        ; 00    ; Unsigned Binary                          ;
+; INCR           ; 01    ; Unsigned Binary                          ;
+; IDLE_IF        ; 00    ; Unsigned Binary                          ;
+; FETCH          ; 01    ; Unsigned Binary                          ;
+; PASS           ; 10    ; Unsigned Binary                          ;
+; IDLE_IF_ID     ; 00    ; Unsigned Binary                          ;
+; STORE          ; 01    ; Unsigned Binary                          ;
++----------------+-------+------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: instructionDecoder:id1 ;
++----------------+-------+--------------------------------------------+
+; Parameter Name ; Value ; Type                                       ;
++----------------+-------+--------------------------------------------+
+; IDLE_ID        ; 00    ; Unsigned Binary                            ;
+; STORE          ; 01    ; Unsigned Binary                            ;
+; FLUSH          ; 10    ; Unsigned Binary                            ;
+; IDLE_DEC       ; 000   ; Unsigned Binary                            ;
+; SPLIT          ; 001   ; Unsigned Binary                            ;
+; DECODE         ; 010   ; Unsigned Binary                            ;
+; PASS           ; 011   ; Unsigned Binary                            ;
+; IDLE_IDEX      ; 00    ; Unsigned Binary                            ;
+; STORE_IDEX     ; 01    ; Unsigned Binary                            ;
++----------------+-------+--------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: controlALU:al1 ;
++----------------+-------+------------------------------------+
+; Parameter Name ; Value ; Type                               ;
++----------------+-------+------------------------------------+
+; ALU_ADD        ; 00000 ; Unsigned Binary                    ;
+; ALU_SUB        ; 00001 ; Unsigned Binary                    ;
+; ALU_AND        ; 00010 ; Unsigned Binary                    ;
+; ALU_OR         ; 00011 ; Unsigned Binary                    ;
+; ALU_XOR        ; 00100 ; Unsigned Binary                    ;
+; ALU_SLL        ; 00101 ; Unsigned Binary                    ;
+; ALU_SRL        ; 00110 ; Unsigned Binary                    ;
+; ALU_SRA        ; 00111 ; Unsigned Binary                    ;
+; ALU_SLT        ; 01000 ; Unsigned Binary                    ;
+; ALU_SLTU       ; 01001 ; Unsigned Binary                    ;
+; ALU_ADDI       ; 01010 ; Unsigned Binary                    ;
+; ALU_XORI       ; 01011 ; Unsigned Binary                    ;
+; ALU_ORI        ; 01100 ; Unsigned Binary                    ;
+; ALU_ANDI       ; 01101 ; Unsigned Binary                    ;
+; ALU_SLLI       ; 01110 ; Unsigned Binary                    ;
+; ALU_SRLI       ; 01111 ; Unsigned Binary                    ;
+; ALU_SRAI       ; 10000 ; Unsigned Binary                    ;
+; ALU_SLTI       ; 10001 ; Unsigned Binary                    ;
+; ALU_SLTIU      ; 10010 ; Unsigned Binary                    ;
+; ALU_SW         ; 10100 ; Unsigned Binary                    ;
+; IDLE_EX        ; 00    ; Unsigned Binary                    ;
+; STORE          ; 01    ; Unsigned Binary                    ;
+; FLUSH          ; 10    ; Unsigned Binary                    ;
+; IDLE_ALU       ; 00    ; Unsigned Binary                    ;
+; ALU            ; 01    ; Unsigned Binary                    ;
+; PASS           ; 10    ; Unsigned Binary                    ;
+; IDLE_EXMEM     ; 00    ; Unsigned Binary                    ;
+; STORE_EXMEM    ; 01    ; Unsigned Binary                    ;
++----------------+-------+------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: dataMemory:dm1 ;
++----------------+-------+------------------------------------+
+; Parameter Name ; Value ; Type                               ;
++----------------+-------+------------------------------------+
+; IDLE_EXMEM     ; 00    ; Unsigned Binary                    ;
+; STORE          ; 01    ; Unsigned Binary                    ;
+; FLUSH          ; 10    ; Unsigned Binary                    ;
+; IDLE_MEM       ; 000   ; Unsigned Binary                    ;
+; HOLD           ; 001   ; Unsigned Binary                    ;
+; READ           ; 010   ; Unsigned Binary                    ;
+; WRITE          ; 011   ; Unsigned Binary                    ;
+; PASS           ; 100   ; Unsigned Binary                    ;
+; IDLE_WB        ; 00    ; Unsigned Binary                    ;
+; STORE_WB       ; 01    ; Unsigned Binary                    ;
++----------------+-------+------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: registerFile:rf1 ;
++----------------+-------+--------------------------------------+
+; Parameter Name ; Value ; Type                                 ;
++----------------+-------+--------------------------------------+
+; IDLE           ; 00    ; Unsigned Binary                      ;
+; BUFFER         ; 01    ; Unsigned Binary                      ;
+; WRITE          ; 10    ; Unsigned Binary                      ;
+; FLUSH          ; 11    ; Unsigned Binary                      ;
++----------------+-------+--------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------+
+; Port Connectivity Checks: "dataMemory:dm1"                ;
++--------------+--------+----------+------------------------+
+; Port         ; Type   ; Severity ; Details                ;
++--------------+--------+----------+------------------------+
+; o_debug_flag ; Output ; Info     ; Explicitly unconnected ;
++--------------+--------+----------+------------------------+
+
+
++-----------------------------------------------------------+
+; Port Connectivity Checks: "controlALU:al1"                ;
++--------------+--------+----------+------------------------+
+; Port         ; Type   ; Severity ; Details                ;
++--------------+--------+----------+------------------------+
+; zero         ; Output ; Info     ; Explicitly unconnected ;
+; o_debug_flag ; Output ; Info     ; Explicitly unconnected ;
++--------------+--------+----------+------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "instructionDecoder:id1"                                                                     ;
++--------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port         ; Type   ; Severity ; Details                                                                             ;
++--------------+--------+----------+-------------------------------------------------------------------------------------+
+; o_flush      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; o_debug_flag ; Output ; Info     ; Explicitly unconnected                                                              ;
++--------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "instructionFetch:if1"                                                                                                                                                         ;
++--------------+--------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port         ; Type   ; Severity ; Details                                                                                                                                                               ;
++--------------+--------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; o_debug_flag ; Output ; Warning  ; Output or bidir port (1 bits) is smaller than the port expression (4 bits) it drives.  The 3 most-significant bit(s) in the port expression will be connected to GND. ;
++--------------+--------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------+
+; Port Connectivity Checks: "instructionLoad:il"            ;
++--------------+--------+----------+------------------------+
+; Port         ; Type   ; Severity ; Details                ;
++--------------+--------+----------+------------------------+
+; o_debug_flag ; Output ; Info     ; Explicitly unconnected ;
++--------------+--------+----------+------------------------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; boundary_port         ; 185                         ;
+; cycloneiii_ff         ; 2152                        ;
+;     CLR               ; 170                         ;
+;     ENA               ; 1478                        ;
+;     ENA CLR           ; 377                         ;
+;     ENA CLR SLD       ; 32                          ;
+;     ENA SCLR          ; 30                          ;
+;     ENA SCLR SLD      ; 4                           ;
+;     ENA SLD           ; 44                          ;
+;     plain             ; 17                          ;
+; cycloneiii_io_obuf    ; 71                          ;
+; cycloneiii_lcell_comb ; 2398                        ;
+;     arith             ; 121                         ;
+;         2 data inputs ; 23                          ;
+;         3 data inputs ; 98                          ;
+;     normal            ; 2277                        ;
+;         0 data inputs ; 1                           ;
+;         1 data inputs ; 32                          ;
+;         2 data inputs ; 91                          ;
+;         3 data inputs ; 466                         ;
+;         4 data inputs ; 1687                        ;
+;                       ;                             ;
+; Max LUT depth         ; 12.00                       ;
+; Average LUT depth     ; 4.20                        ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:12     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 22.1std.0 Build 915 10/25/2022 SC Lite Edition
+    Info: Processing started: Thu Nov 28 15:21:12 2024
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off finalProject -c instructionLoad
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 6 of the 6 processors detected
+Info (12021): Found 1 design units, including 1 entities, in source file rtl/datamemory.v
+    Info (12023): Found entity 1: dataMemory File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/dataMemory.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file rtl/serial_comm.v
+    Info (12023): Found entity 1: serial_comm File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/serial_comm.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file rtl/de10_lite_golden_top.v
+    Info (12023): Found entity 1: DE10_LITE_Golden_Top File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 29
+Info (12021): Found 1 design units, including 1 entities, in source file rtl/ascii_to_bits_converter.v
+    Info (12023): Found entity 1: ascii_to_bits_converter File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/ascii_to_bits_converter.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file rtl/registerfile.v
+    Info (12023): Found entity 1: registerFile File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/registerFile.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file rtl/instructiondecoder.v
+    Info (12023): Found entity 1: instructionDecoder File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/instructionDecoder.v Line: 1
+Warning (12019): Can't analyze file -- file rtl/controlUnit.v is missing
+Info (12021): Found 1 design units, including 1 entities, in source file rtl/controlalu.v
+    Info (12023): Found entity 1: controlALU File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/controlALU.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file rtl/instructionfetch.v
+    Info (12023): Found entity 1: instructionFetch File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/instructionFetch.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file rtl/instructionload.v
+    Info (12023): Found entity 1: instructionLoad File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/instructionLoad.v Line: 1
+Info (12127): Elaborating entity "DE10_LITE_Golden_Top" for the top level hierarchy
+Warning (10036): Verilog HDL or VHDL warning at DE10_LITE_Golden_Top.v(155): object "rx_ready_latched" assigned a value but never read File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 155
+Warning (10034): Output port "DRAM_ADDR" at DE10_LITE_Golden_Top.v(46) has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 46
+Warning (10034): Output port "DRAM_BA" at DE10_LITE_Golden_Top.v(47) has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 47
+Warning (10034): Output port "HEX0" at DE10_LITE_Golden_Top.v(61) has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 61
+Warning (10034): Output port "HEX1" at DE10_LITE_Golden_Top.v(64) has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 64
+Warning (10034): Output port "HEX2" at DE10_LITE_Golden_Top.v(67) has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 67
+Warning (10034): Output port "HEX3" at DE10_LITE_Golden_Top.v(70) has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 70
+Warning (10034): Output port "HEX4" at DE10_LITE_Golden_Top.v(73) has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 73
+Warning (10034): Output port "HEX5" at DE10_LITE_Golden_Top.v(76) has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 76
+Warning (10034): Output port "LEDR[5]" at DE10_LITE_Golden_Top.v(86) has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 86
+Warning (10034): Output port "VGA_B" at DE10_LITE_Golden_Top.v(96) has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 96
+Warning (10034): Output port "VGA_G" at DE10_LITE_Golden_Top.v(97) has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 97
+Warning (10034): Output port "VGA_R" at DE10_LITE_Golden_Top.v(99) has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 99
+Warning (10034): Output port "DRAM_CAS_N" at DE10_LITE_Golden_Top.v(48) has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 48
+Warning (10034): Output port "DRAM_CKE" at DE10_LITE_Golden_Top.v(49) has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 49
+Warning (10034): Output port "DRAM_CLK" at DE10_LITE_Golden_Top.v(50) has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 50
+Warning (10034): Output port "DRAM_CS_N" at DE10_LITE_Golden_Top.v(51) has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 51
+Warning (10034): Output port "DRAM_LDQM" at DE10_LITE_Golden_Top.v(53) has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 53
+Warning (10034): Output port "DRAM_RAS_N" at DE10_LITE_Golden_Top.v(54) has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 54
+Warning (10034): Output port "DRAM_UDQM" at DE10_LITE_Golden_Top.v(55) has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 55
+Warning (10034): Output port "DRAM_WE_N" at DE10_LITE_Golden_Top.v(56) has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 56
+Warning (10034): Output port "VGA_HS" at DE10_LITE_Golden_Top.v(98) has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 98
+Warning (10034): Output port "VGA_VS" at DE10_LITE_Golden_Top.v(100) has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 100
+Warning (10034): Output port "GSENSOR_CS_N" at DE10_LITE_Golden_Top.v(105) has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 105
+Warning (10034): Output port "GSENSOR_SCLK" at DE10_LITE_Golden_Top.v(107) has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 107
+Info (12128): Elaborating entity "serial_comm" for hierarchy "serial_comm:serial_comm_inst" File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 214
+Warning (10230): Verilog HDL assignment warning at serial_comm.v(53): truncated value with size 32 to match size of target (1) File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/serial_comm.v Line: 53
+Warning (10230): Verilog HDL assignment warning at serial_comm.v(71): truncated value with size 32 to match size of target (16) File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/serial_comm.v Line: 71
+Warning (10230): Verilog HDL assignment warning at serial_comm.v(111): truncated value with size 32 to match size of target (5) File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/serial_comm.v Line: 111
+Warning (10230): Verilog HDL assignment warning at serial_comm.v(118): truncated value with size 32 to match size of target (3) File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/serial_comm.v Line: 118
+Warning (10230): Verilog HDL assignment warning at serial_comm.v(123): truncated value with size 32 to match size of target (5) File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/serial_comm.v Line: 123
+Warning (10230): Verilog HDL assignment warning at serial_comm.v(140): truncated value with size 32 to match size of target (1) File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/serial_comm.v Line: 140
+Warning (10230): Verilog HDL assignment warning at serial_comm.v(152): truncated value with size 32 to match size of target (1) File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/serial_comm.v Line: 152
+Warning (10230): Verilog HDL assignment warning at serial_comm.v(161): truncated value with size 32 to match size of target (4) File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/serial_comm.v Line: 161
+Warning (10230): Verilog HDL assignment warning at serial_comm.v(163): truncated value with size 32 to match size of target (1) File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/serial_comm.v Line: 163
+Warning (10230): Verilog HDL assignment warning at serial_comm.v(167): truncated value with size 32 to match size of target (5) File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/serial_comm.v Line: 167
+Warning (10230): Verilog HDL assignment warning at serial_comm.v(171): truncated value with size 32 to match size of target (1) File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/serial_comm.v Line: 171
+Info (12128): Elaborating entity "ascii_to_bits_converter" for hierarchy "ascii_to_bits_converter:test" File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 224
+Warning (10230): Verilog HDL assignment warning at ascii_to_bits_converter.v(25): truncated value with size 32 to match size of target (5) File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/ascii_to_bits_converter.v Line: 25
+Warning (10230): Verilog HDL assignment warning at ascii_to_bits_converter.v(29): truncated value with size 32 to match size of target (5) File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/ascii_to_bits_converter.v Line: 29
+Info (12128): Elaborating entity "instructionLoad" for hierarchy "instructionLoad:il" File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 236
+Info (12128): Elaborating entity "instructionFetch" for hierarchy "instructionFetch:if1" File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 248
+Warning (10036): Verilog HDL or VHDL warning at instructionFetch.v(18): object "r_load_instruction" assigned a value but never read File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/instructionFetch.v Line: 18
+Warning (10036): Verilog HDL or VHDL warning at instructionFetch.v(30): object "r_prev_prog_counter" assigned a value but never read File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/instructionFetch.v Line: 30
+Warning (10036): Verilog HDL or VHDL warning at instructionFetch.v(32): object "r_is_fetch_enabled" assigned a value but never read File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/instructionFetch.v Line: 32
+Warning (10270): Verilog HDL Case Statement warning at instructionFetch.v(74): incomplete case statement has no default case item File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/instructionFetch.v Line: 74
+Warning (10230): Verilog HDL assignment warning at instructionFetch.v(288): truncated value with size 4 to match size of target (1) File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/instructionFetch.v Line: 288
+Info (12128): Elaborating entity "instructionDecoder" for hierarchy "instructionDecoder:id1" File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 269
+Warning (10036): Verilog HDL or VHDL warning at instructionDecoder.v(53): object "r_fin_flag" assigned a value but never read File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/instructionDecoder.v Line: 53
+Warning (10036): Verilog HDL or VHDL warning at instructionDecoder.v(65): object "r_ex_op_code" assigned a value but never read File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/instructionDecoder.v Line: 65
+Warning (10036): Verilog HDL or VHDL warning at instructionDecoder.v(66): object "ex_rd" assigned a value but never read File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/instructionDecoder.v Line: 66
+Warning (10036): Verilog HDL or VHDL warning at instructionDecoder.v(67): object "ex_funct3" assigned a value but never read File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/instructionDecoder.v Line: 67
+Warning (10036): Verilog HDL or VHDL warning at instructionDecoder.v(68): object "ex_rs1" assigned a value but never read File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/instructionDecoder.v Line: 68
+Warning (10036): Verilog HDL or VHDL warning at instructionDecoder.v(69): object "ex_rs2" assigned a value but never read File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/instructionDecoder.v Line: 69
+Warning (10036): Verilog HDL or VHDL warning at instructionDecoder.v(70): object "ex_funct7" assigned a value but never read File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/instructionDecoder.v Line: 70
+Warning (10036): Verilog HDL or VHDL warning at instructionDecoder.v(71): object "ex_imm" assigned a value but never read File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/instructionDecoder.v Line: 71
+Warning (10036): Verilog HDL or VHDL warning at instructionDecoder.v(78): object "r_ex_hold_op_code" assigned a value but never read File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/instructionDecoder.v Line: 78
+Warning (10036): Verilog HDL or VHDL warning at instructionDecoder.v(79): object "ex_hold_rd" assigned a value but never read File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/instructionDecoder.v Line: 79
+Warning (10036): Verilog HDL or VHDL warning at instructionDecoder.v(80): object "ex_hold_funct3" assigned a value but never read File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/instructionDecoder.v Line: 80
+Warning (10036): Verilog HDL or VHDL warning at instructionDecoder.v(81): object "ex_hold_rs1" assigned a value but never read File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/instructionDecoder.v Line: 81
+Warning (10036): Verilog HDL or VHDL warning at instructionDecoder.v(82): object "ex_hold_rs2" assigned a value but never read File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/instructionDecoder.v Line: 82
+Warning (10036): Verilog HDL or VHDL warning at instructionDecoder.v(83): object "ex_hold_funct7" assigned a value but never read File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/instructionDecoder.v Line: 83
+Warning (10036): Verilog HDL or VHDL warning at instructionDecoder.v(84): object "ex_hold_imm" assigned a value but never read File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/instructionDecoder.v Line: 84
+Warning (10036): Verilog HDL or VHDL warning at instructionDecoder.v(85): object "DEBUG_FLAG" assigned a value but never read File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/instructionDecoder.v Line: 85
+Info (12128): Elaborating entity "controlALU" for hierarchy "controlALU:al1" File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 291
+Warning (10036): Verilog HDL or VHDL warning at controlALU.v(23): object "r_ex_ready" assigned a value but never read File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/controlALU.v Line: 23
+Warning (10036): Verilog HDL or VHDL warning at controlALU.v(26): object "r_ex_ready_delay" assigned a value but never read File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/controlALU.v Line: 26
+Warning (10036): Verilog HDL or VHDL warning at controlALU.v(41): object "DEBUG_FLAG" assigned a value but never read File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/controlALU.v Line: 41
+Warning (10034): Output port "zero" at controlALU.v(13) has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/controlALU.v Line: 13
+Info (12128): Elaborating entity "dataMemory" for hierarchy "dataMemory:dm1" File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 308
+Warning (10036): Verilog HDL or VHDL warning at dataMemory.v(36): object "DEBUG_FLAG" assigned a value but never read File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/dataMemory.v Line: 36
+Info (12128): Elaborating entity "registerFile" for hierarchy "registerFile:rf1" File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 323
+Info (10264): Verilog HDL Case Statement information at registerFile.v(85): all case item expressions in this case statement are onehot File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/registerFile.v Line: 85
+Critical Warning (127005): Memory depth (32) in the design file differs from memory depth (17) in the Memory Initialization File "G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/db/instructionLoad.ram0_dataMemory_114200bc.hdl.mif" -- setting initial value for remaining addresses to 0
+Info (276014): Found 2 instances of uninferred RAM logic
+    Info (276013): RAM logic "dataMemory:dm1|memory_array" is uninferred because MIF is not supported for the selected family File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/dataMemory.v Line: 17
+    Info (276004): RAM logic "instructionFetch:if1|memory" is uninferred due to inappropriate RAM size File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/instructionFetch.v Line: 14
+Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Warning (13034): The following nodes have both tri-state and non-tri-state drivers
+    Warning (13035): Inserted always-enabled tri-state buffer between "GPIO[1]" and its non-tri-state driver. File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 122
+Warning (13039): The following bidirectional pins have no drivers
+    Warning (13040): bidirectional pin "GPIO[2]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 122
+    Warning (13040): bidirectional pin "DRAM_DQ[0]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 52
+    Warning (13040): bidirectional pin "DRAM_DQ[1]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 52
+    Warning (13040): bidirectional pin "DRAM_DQ[2]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 52
+    Warning (13040): bidirectional pin "DRAM_DQ[3]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 52
+    Warning (13040): bidirectional pin "DRAM_DQ[4]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 52
+    Warning (13040): bidirectional pin "DRAM_DQ[5]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 52
+    Warning (13040): bidirectional pin "DRAM_DQ[6]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 52
+    Warning (13040): bidirectional pin "DRAM_DQ[7]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 52
+    Warning (13040): bidirectional pin "DRAM_DQ[8]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 52
+    Warning (13040): bidirectional pin "DRAM_DQ[9]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 52
+    Warning (13040): bidirectional pin "DRAM_DQ[10]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 52
+    Warning (13040): bidirectional pin "DRAM_DQ[11]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 52
+    Warning (13040): bidirectional pin "DRAM_DQ[12]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 52
+    Warning (13040): bidirectional pin "DRAM_DQ[13]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 52
+    Warning (13040): bidirectional pin "DRAM_DQ[14]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 52
+    Warning (13040): bidirectional pin "DRAM_DQ[15]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 52
+    Warning (13040): bidirectional pin "GSENSOR_SDI" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 108
+    Warning (13040): bidirectional pin "GSENSOR_SDO" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 109
+    Warning (13040): bidirectional pin "ARDUINO_IO[0]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 114
+    Warning (13040): bidirectional pin "ARDUINO_IO[1]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 114
+    Warning (13040): bidirectional pin "ARDUINO_IO[2]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 114
+    Warning (13040): bidirectional pin "ARDUINO_IO[3]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 114
+    Warning (13040): bidirectional pin "ARDUINO_IO[4]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 114
+    Warning (13040): bidirectional pin "ARDUINO_IO[5]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 114
+    Warning (13040): bidirectional pin "ARDUINO_IO[6]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 114
+    Warning (13040): bidirectional pin "ARDUINO_IO[7]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 114
+    Warning (13040): bidirectional pin "ARDUINO_IO[8]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 114
+    Warning (13040): bidirectional pin "ARDUINO_IO[9]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 114
+    Warning (13040): bidirectional pin "ARDUINO_IO[10]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 114
+    Warning (13040): bidirectional pin "ARDUINO_IO[11]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 114
+    Warning (13040): bidirectional pin "ARDUINO_IO[12]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 114
+    Warning (13040): bidirectional pin "ARDUINO_IO[13]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 114
+    Warning (13040): bidirectional pin "ARDUINO_IO[14]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 114
+    Warning (13040): bidirectional pin "ARDUINO_IO[15]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 114
+    Warning (13040): bidirectional pin "ARDUINO_RESET_N" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 115
+    Warning (13040): bidirectional pin "GPIO[0]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 122
+    Warning (13040): bidirectional pin "GPIO[3]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 122
+    Warning (13040): bidirectional pin "GPIO[4]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 122
+    Warning (13040): bidirectional pin "GPIO[5]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 122
+    Warning (13040): bidirectional pin "GPIO[6]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 122
+    Warning (13040): bidirectional pin "GPIO[7]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 122
+    Warning (13040): bidirectional pin "GPIO[8]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 122
+    Warning (13040): bidirectional pin "GPIO[9]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 122
+    Warning (13040): bidirectional pin "GPIO[10]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 122
+    Warning (13040): bidirectional pin "GPIO[11]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 122
+    Warning (13040): bidirectional pin "GPIO[12]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 122
+    Warning (13040): bidirectional pin "GPIO[13]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 122
+    Warning (13040): bidirectional pin "GPIO[14]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 122
+    Warning (13040): bidirectional pin "GPIO[15]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 122
+    Warning (13040): bidirectional pin "GPIO[16]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 122
+    Warning (13040): bidirectional pin "GPIO[17]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 122
+    Warning (13040): bidirectional pin "GPIO[18]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 122
+    Warning (13040): bidirectional pin "GPIO[19]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 122
+    Warning (13040): bidirectional pin "GPIO[20]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 122
+    Warning (13040): bidirectional pin "GPIO[21]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 122
+    Warning (13040): bidirectional pin "GPIO[22]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 122
+    Warning (13040): bidirectional pin "GPIO[23]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 122
+    Warning (13040): bidirectional pin "GPIO[24]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 122
+    Warning (13040): bidirectional pin "GPIO[25]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 122
+    Warning (13040): bidirectional pin "GPIO[26]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 122
+    Warning (13040): bidirectional pin "GPIO[27]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 122
+    Warning (13040): bidirectional pin "GPIO[28]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 122
+    Warning (13040): bidirectional pin "GPIO[29]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 122
+    Warning (13040): bidirectional pin "GPIO[30]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 122
+    Warning (13040): bidirectional pin "GPIO[31]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 122
+    Warning (13040): bidirectional pin "GPIO[32]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 122
+    Warning (13040): bidirectional pin "GPIO[33]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 122
+    Warning (13040): bidirectional pin "GPIO[34]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 122
+    Warning (13040): bidirectional pin "GPIO[35]" has no driver File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 122
+Info (13000): Registers with preset signals will power-up high File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/serial_comm.v Line: 16
+Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
+Warning (13009): TRI or OPNDRN buffers permanently enabled
+    Warning (13010): Node "GPIO[1]~synth" File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 122
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "DRAM_ADDR[0]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 46
+    Warning (13410): Pin "DRAM_ADDR[1]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 46
+    Warning (13410): Pin "DRAM_ADDR[2]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 46
+    Warning (13410): Pin "DRAM_ADDR[3]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 46
+    Warning (13410): Pin "DRAM_ADDR[4]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 46
+    Warning (13410): Pin "DRAM_ADDR[5]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 46
+    Warning (13410): Pin "DRAM_ADDR[6]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 46
+    Warning (13410): Pin "DRAM_ADDR[7]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 46
+    Warning (13410): Pin "DRAM_ADDR[8]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 46
+    Warning (13410): Pin "DRAM_ADDR[9]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 46
+    Warning (13410): Pin "DRAM_ADDR[10]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 46
+    Warning (13410): Pin "DRAM_ADDR[11]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 46
+    Warning (13410): Pin "DRAM_ADDR[12]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 46
+    Warning (13410): Pin "DRAM_BA[0]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 47
+    Warning (13410): Pin "DRAM_BA[1]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 47
+    Warning (13410): Pin "DRAM_CAS_N" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 48
+    Warning (13410): Pin "DRAM_CKE" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 49
+    Warning (13410): Pin "DRAM_CLK" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 50
+    Warning (13410): Pin "DRAM_CS_N" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 51
+    Warning (13410): Pin "DRAM_LDQM" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 53
+    Warning (13410): Pin "DRAM_RAS_N" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 54
+    Warning (13410): Pin "DRAM_UDQM" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 55
+    Warning (13410): Pin "DRAM_WE_N" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 56
+    Warning (13410): Pin "HEX0[0]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 61
+    Warning (13410): Pin "HEX0[1]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 61
+    Warning (13410): Pin "HEX0[2]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 61
+    Warning (13410): Pin "HEX0[3]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 61
+    Warning (13410): Pin "HEX0[4]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 61
+    Warning (13410): Pin "HEX0[5]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 61
+    Warning (13410): Pin "HEX0[6]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 61
+    Warning (13410): Pin "HEX0[7]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 61
+    Warning (13410): Pin "HEX1[0]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 64
+    Warning (13410): Pin "HEX1[1]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 64
+    Warning (13410): Pin "HEX1[2]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 64
+    Warning (13410): Pin "HEX1[3]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 64
+    Warning (13410): Pin "HEX1[4]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 64
+    Warning (13410): Pin "HEX1[5]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 64
+    Warning (13410): Pin "HEX1[6]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 64
+    Warning (13410): Pin "HEX1[7]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 64
+    Warning (13410): Pin "HEX2[0]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 67
+    Warning (13410): Pin "HEX2[1]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 67
+    Warning (13410): Pin "HEX2[2]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 67
+    Warning (13410): Pin "HEX2[3]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 67
+    Warning (13410): Pin "HEX2[4]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 67
+    Warning (13410): Pin "HEX2[5]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 67
+    Warning (13410): Pin "HEX2[6]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 67
+    Warning (13410): Pin "HEX2[7]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 67
+    Warning (13410): Pin "HEX3[0]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 70
+    Warning (13410): Pin "HEX3[1]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 70
+    Warning (13410): Pin "HEX3[2]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 70
+    Warning (13410): Pin "HEX3[3]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 70
+    Warning (13410): Pin "HEX3[4]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 70
+    Warning (13410): Pin "HEX3[5]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 70
+    Warning (13410): Pin "HEX3[6]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 70
+    Warning (13410): Pin "HEX3[7]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 70
+    Warning (13410): Pin "HEX4[0]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 73
+    Warning (13410): Pin "HEX4[1]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 73
+    Warning (13410): Pin "HEX4[2]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 73
+    Warning (13410): Pin "HEX4[3]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 73
+    Warning (13410): Pin "HEX4[4]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 73
+    Warning (13410): Pin "HEX4[5]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 73
+    Warning (13410): Pin "HEX4[6]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 73
+    Warning (13410): Pin "HEX4[7]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 73
+    Warning (13410): Pin "HEX5[0]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 76
+    Warning (13410): Pin "HEX5[1]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 76
+    Warning (13410): Pin "HEX5[2]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 76
+    Warning (13410): Pin "HEX5[3]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 76
+    Warning (13410): Pin "HEX5[4]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 76
+    Warning (13410): Pin "HEX5[5]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 76
+    Warning (13410): Pin "HEX5[6]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 76
+    Warning (13410): Pin "HEX5[7]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 76
+    Warning (13410): Pin "LEDR[5]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 86
+    Warning (13410): Pin "LEDR[7]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 86
+    Warning (13410): Pin "LEDR[8]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 86
+    Warning (13410): Pin "LEDR[9]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 86
+    Warning (13410): Pin "VGA_B[0]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 96
+    Warning (13410): Pin "VGA_B[1]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 96
+    Warning (13410): Pin "VGA_B[2]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 96
+    Warning (13410): Pin "VGA_B[3]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 96
+    Warning (13410): Pin "VGA_G[0]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 97
+    Warning (13410): Pin "VGA_G[1]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 97
+    Warning (13410): Pin "VGA_G[2]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 97
+    Warning (13410): Pin "VGA_G[3]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 97
+    Warning (13410): Pin "VGA_HS" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 98
+    Warning (13410): Pin "VGA_R[0]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 99
+    Warning (13410): Pin "VGA_R[1]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 99
+    Warning (13410): Pin "VGA_R[2]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 99
+    Warning (13410): Pin "VGA_R[3]" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 99
+    Warning (13410): Pin "VGA_VS" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 100
+    Warning (13410): Pin "GSENSOR_CS_N" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 105
+    Warning (13410): Pin "GSENSOR_SCLK" is stuck at GND File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 107
+Info (286030): Timing-Driven Synthesis is running
+Critical Warning (18061): Ignored Power-Up Level option on the following registers
+    Critical Warning (18010): Register instructionFetch:if1|r_enable_pc will power up to High File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/instructionFetch.v Line: 27
+Info (17049): 16 registers lost all their fanouts during netlist optimizations.
+Info (144001): Generated suppressed messages file G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/output_files/instructionLoad.map.smsg
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Warning (21074): Design contains 14 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "ADC_CLK_10" File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 33
+    Warning (15610): No output dependent on input pin "MAX10_CLK2_50" File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 41
+    Warning (15610): No output dependent on input pin "KEY[1]" File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 81
+    Warning (15610): No output dependent on input pin "SW[1]" File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 91
+    Warning (15610): No output dependent on input pin "SW[2]" File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 91
+    Warning (15610): No output dependent on input pin "SW[3]" File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 91
+    Warning (15610): No output dependent on input pin "SW[4]" File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 91
+    Warning (15610): No output dependent on input pin "SW[5]" File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 91
+    Warning (15610): No output dependent on input pin "SW[6]" File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 91
+    Warning (15610): No output dependent on input pin "SW[7]" File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 91
+    Warning (15610): No output dependent on input pin "SW[8]" File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 91
+    Warning (15610): No output dependent on input pin "SW[9]" File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 91
+    Warning (15610): No output dependent on input pin "GSENSOR_INT[1]" File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 106
+    Warning (15610): No output dependent on input pin "GSENSOR_INT[2]" File: G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/rtl/DE10_LITE_Golden_Top.v Line: 106
+Info (21057): Implemented 4369 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 17 input pins
+    Info (21059): Implemented 97 output pins
+    Info (21060): Implemented 71 bidirectional pins
+    Info (21061): Implemented 4184 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 252 warnings
+    Info: Peak virtual memory: 4815 megabytes
+    Info: Processing ended: Thu Nov 28 15:21:42 2024
+    Info: Elapsed time: 00:00:30
+    Info: Total CPU time (on all processors): 00:00:37
+
+
++------------------------------------------+
+; Analysis & Synthesis Suppressed Messages ;
++------------------------------------------+
+The suppressed messages can be found in G:/My Drive/Documents/York University/Third Year Fall 2024/EECS 3216 Digital Systems Engineering/FinalProject/output_files/instructionLoad.map.smsg.
+
+

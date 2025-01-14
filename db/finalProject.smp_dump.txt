@@ -1,0 +1,91 @@
+
+State Machine - |DE10_LITE_Golden_Top|registerFile:rf1|curr_state
+Name curr_state.FLUSH curr_state.WRITE curr_state.BUFFER curr_state.IDLE 
+curr_state.IDLE 0 0 0 0 
+curr_state.BUFFER 0 0 1 1 
+curr_state.WRITE 0 1 0 1 
+curr_state.FLUSH 1 0 0 1 
+
+State Machine - |DE10_LITE_Golden_Top|dataMemory:dm1|curr_wb_state
+Name curr_wb_state.STORE_WB 
+curr_wb_state.IDLE_WB 0 
+curr_wb_state.STORE_WB 1 
+
+State Machine - |DE10_LITE_Golden_Top|dataMemory:dm1|curr_mem_state
+Name curr_mem_state.WRITE curr_mem_state.READ curr_mem_state.HOLD curr_mem_state.IDLE_MEM curr_mem_state.PASS 
+curr_mem_state.IDLE_MEM 0 0 0 0 0 
+curr_mem_state.HOLD 0 0 1 1 0 
+curr_mem_state.READ 0 1 0 1 0 
+curr_mem_state.WRITE 1 0 0 1 0 
+curr_mem_state.PASS 0 0 0 1 1 
+
+State Machine - |DE10_LITE_Golden_Top|dataMemory:dm1|curr_exmem_state
+Name curr_exmem_state.IDLE_EXMEM curr_exmem_state.FLUSH curr_exmem_state.STORE 
+curr_exmem_state.IDLE_EXMEM 0 0 0 
+curr_exmem_state.STORE 1 0 1 
+curr_exmem_state.FLUSH 1 1 0 
+
+State Machine - |DE10_LITE_Golden_Top|controlALU:al1|curr_exmem_state
+Name curr_exmem_state.STORE_EXMEM 
+curr_exmem_state.IDLE_EXMEM 0 
+curr_exmem_state.STORE_EXMEM 1 
+
+State Machine - |DE10_LITE_Golden_Top|controlALU:al1|curr_alu_state
+Name curr_alu_state.IDLE_ALU curr_alu_state.PASS curr_alu_state.ALU 
+curr_alu_state.IDLE_ALU 0 0 0 
+curr_alu_state.ALU 1 0 1 
+curr_alu_state.PASS 1 1 0 
+
+State Machine - |DE10_LITE_Golden_Top|controlALU:al1|curr_ex_state
+Name curr_ex_state.IDLE_EX curr_ex_state.FLUSH curr_ex_state.STORE 
+curr_ex_state.IDLE_EX 0 0 0 
+curr_ex_state.STORE 1 0 1 
+curr_ex_state.FLUSH 1 1 0 
+
+State Machine - |DE10_LITE_Golden_Top|instructionDecoder:id1|curr_idex_state
+Name curr_idex_state.STORE_IDEX 
+curr_idex_state.IDLE_IDEX 0 
+curr_idex_state.STORE_IDEX 1 
+
+State Machine - |DE10_LITE_Golden_Top|instructionDecoder:id1|curr_dec_state
+Name curr_dec_state.PASS curr_dec_state.DECODE curr_dec_state.SPLIT curr_dec_state.IDLE_DEC 
+curr_dec_state.IDLE_DEC 0 0 0 0 
+curr_dec_state.SPLIT 0 0 1 1 
+curr_dec_state.DECODE 0 1 0 1 
+curr_dec_state.PASS 1 0 0 1 
+
+State Machine - |DE10_LITE_Golden_Top|instructionDecoder:id1|curr_id_state
+Name curr_id_state.IDLE_ID curr_id_state.FLUSH curr_id_state.STORE 
+curr_id_state.IDLE_ID 0 0 0 
+curr_id_state.STORE 1 0 1 
+curr_id_state.FLUSH 1 1 0 
+
+State Machine - |DE10_LITE_Golden_Top|instructionFetch:if1|curr_if_state
+Name curr_if_state.STORE 
+curr_if_state.IDLE_IF_ID 0 
+curr_if_state.STORE 1 
+
+State Machine - |DE10_LITE_Golden_Top|instructionFetch:if1|curr_fetch_state
+Name curr_fetch_state.IDLE_IF curr_fetch_state.PASS curr_fetch_state.FETCH 
+curr_fetch_state.IDLE_IF 0 0 0 
+curr_fetch_state.FETCH 1 0 1 
+curr_fetch_state.PASS 1 1 0 
+
+State Machine - |DE10_LITE_Golden_Top|instructionFetch:if1|curr_pc_state
+Name curr_pc_state.INCR 
+curr_pc_state.IDLE_PC 0 
+curr_pc_state.INCR 1 
+
+State Machine - |DE10_LITE_Golden_Top|instructionLoad:il|curr_state
+Name curr_state.ADDR_INCR curr_state.WRITE curr_state.RECEIVE curr_state.IDLE 
+curr_state.IDLE 0 0 0 0 
+curr_state.RECEIVE 0 0 1 1 
+curr_state.WRITE 0 1 0 1 
+curr_state.ADDR_INCR 1 0 0 1 
+
+State Machine - |DE10_LITE_Golden_Top|serial_comm:serial_comm_inst|rx_fsm_state
+Name rx_fsm_state.RX_COMPLETE rx_fsm_state.RX_FETCHING rx_fsm_state.RX_VERIFY_START rx_fsm_state.RX_IDLE 
+rx_fsm_state.RX_IDLE 0 0 0 0 
+rx_fsm_state.RX_VERIFY_START 0 0 1 1 
+rx_fsm_state.RX_FETCHING 0 1 0 1 
+rx_fsm_state.RX_COMPLETE 1 0 0 1 

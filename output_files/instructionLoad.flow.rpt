@@ -1,0 +1,138 @@
+Flow report for instructionLoad
+Thu Nov 28 15:22:53 2024
+Quartus Prime Version 22.1std.0 Build 915 10/25/2022 SC Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Flow Summary
+  3. Flow Settings
+  4. Flow Non-Default Global Settings
+  5. Flow Elapsed Time
+  6. Flow OS Summary
+  7. Flow Log
+  8. Flow Messages
+  9. Flow Suppressed Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2022  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details, at
+https://fpgasoftware.intel.com/eula.
+
+
+
++-------------------------------------------------------------------------------------+
+; Flow Summary                                                                        ;
++------------------------------------+------------------------------------------------+
+; Flow Status                        ; Successful - Thu Nov 28 15:22:53 2024          ;
+; Quartus Prime Version              ; 22.1std.0 Build 915 10/25/2022 SC Lite Edition ;
+; Revision Name                      ; instructionLoad                                ;
+; Top-level Entity Name              ; DE10_LITE_Golden_Top                           ;
+; Family                             ; MAX 10                                         ;
+; Device                             ; 10M50DAF484C7G                                 ;
+; Timing Models                      ; Final                                          ;
+; Total logic elements               ; 3,282 / 49,760 ( 7 % )                         ;
+;     Total combinational functions  ; 2,398 / 49,760 ( 5 % )                         ;
+;     Dedicated logic registers      ; 2,152 / 49,760 ( 4 % )                         ;
+; Total registers                    ; 2152                                           ;
+; Total pins                         ; 185 / 360 ( 51 % )                             ;
+; Total virtual pins                 ; 0                                              ;
+; Total memory bits                  ; 0 / 1,677,312 ( 0 % )                          ;
+; Embedded Multiplier 9-bit elements ; 0 / 288 ( 0 % )                                ;
+; Total PLLs                         ; 0 / 4 ( 0 % )                                  ;
+; UFM blocks                         ; 0 / 1 ( 0 % )                                  ;
+; ADC blocks                         ; 0 / 2 ( 0 % )                                  ;
++------------------------------------+------------------------------------------------+
+
+
++-----------------------------------------+
+; Flow Settings                           ;
++-------------------+---------------------+
+; Option            ; Setting             ;
++-------------------+---------------------+
+; Start date & time ; 11/28/2024 15:21:13 ;
+; Main task         ; Compilation         ;
+; Revision Name     ; instructionLoad     ;
++-------------------+---------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Flow Non-Default Global Settings                                                                                                                          ;
++-------------------------------------+----------------------------------------+-----------------+----------------------+-----------------------------------+
+; Assignment Name                     ; Value                                  ; Default Value   ; Entity Name          ; Section Id                        ;
++-------------------------------------+----------------------------------------+-----------------+----------------------+-----------------------------------+
+; COMPILER_SIGNATURE_ID               ; 10995770589196.173282527328800         ; --              ; --                   ; --                                ;
+; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --              ; --                   ; eda_board_design_timing           ;
+; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --              ; --                   ; eda_board_design_boundary_scan    ;
+; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --              ; --                   ; eda_board_design_signal_integrity ;
+; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --              ; --                   ; eda_board_design_symbol           ;
+; EDA_OUTPUT_DATA_FORMAT              ; Verilog Hdl                            ; --              ; --                   ; eda_simulation                    ;
+; EDA_SIMULATION_TOOL                 ; Questa Intel FPGA (Verilog)            ; <None>          ; --                   ; --                                ;
+; EDA_TIME_SCALE                      ; 1 ps                                   ; --              ; --                   ; eda_simulation                    ;
+; MAX_CORE_JUNCTION_TEMP              ; 85                                     ; --              ; --                   ; --                                ;
+; MIN_CORE_JUNCTION_TEMP              ; 0                                      ; --              ; --                   ; --                                ;
+; PARTITION_COLOR                     ; -- (Not supported for targeted family) ; --              ; DE10_LITE_Golden_Top ; Top                               ;
+; PARTITION_FITTER_PRESERVATION_LEVEL ; -- (Not supported for targeted family) ; --              ; DE10_LITE_Golden_Top ; Top                               ;
+; PARTITION_NETLIST_TYPE              ; -- (Not supported for targeted family) ; --              ; DE10_LITE_Golden_Top ; Top                               ;
+; POWER_BOARD_THERMAL_MODEL           ; None (CONSERVATIVE)                    ; --              ; --                   ; --                                ;
+; POWER_PRESET_COOLING_SOLUTION       ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW  ; --              ; --                   ; --                                ;
+; PROJECT_OUTPUT_DIRECTORY            ; output_files                           ; --              ; --                   ; --                                ;
+; TOP_LEVEL_ENTITY                    ; DE10_LITE_Golden_Top                   ; instructionLoad ; --                   ; --                                ;
++-------------------------------------+----------------------------------------+-----------------+----------------------+-----------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------+
+; Flow Elapsed Time                                                                                                        ;
++----------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
++----------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Analysis & Synthesis ; 00:00:28     ; 1.0                     ; 4815 MB             ; 00:00:37                           ;
+; Fitter               ; 00:00:38     ; 1.3                     ; 5824 MB             ; 00:00:56                           ;
+; Assembler            ; 00:00:06     ; 1.0                     ; 4728 MB             ; 00:00:04                           ;
+; Timing Analyzer      ; 00:00:11     ; 1.3                     ; 4906 MB             ; 00:00:11                           ;
+; EDA Netlist Writer   ; 00:00:03     ; 1.0                     ; 4668 MB             ; 00:00:02                           ;
+; Total                ; 00:01:26     ; --                      ; --                  ; 00:01:50                           ;
++----------------------+--------------+-------------------------+---------------------+------------------------------------+
+
+
++------------------------------------------------------------------------------------+
+; Flow OS Summary                                                                    ;
++----------------------+------------------+------------+------------+----------------+
+; Module Name          ; Machine Hostname ; OS Name    ; OS Version ; Processor type ;
++----------------------+------------------+------------+------------+----------------+
+; Analysis & Synthesis ; DESKTOP-3P1JE13  ; Windows 10 ; 10.0       ; x86_64         ;
+; Fitter               ; DESKTOP-3P1JE13  ; Windows 10 ; 10.0       ; x86_64         ;
+; Assembler            ; DESKTOP-3P1JE13  ; Windows 10 ; 10.0       ; x86_64         ;
+; Timing Analyzer      ; DESKTOP-3P1JE13  ; Windows 10 ; 10.0       ; x86_64         ;
+; EDA Netlist Writer   ; DESKTOP-3P1JE13  ; Windows 10 ; 10.0       ; x86_64         ;
++----------------------+------------------+------------+------------+----------------+
+
+
+------------
+; Flow Log ;
+------------
+quartus_map --read_settings_files=on --write_settings_files=off finalProject -c instructionLoad
+quartus_fit --read_settings_files=off --write_settings_files=off finalProject -c instructionLoad
+quartus_asm --read_settings_files=off --write_settings_files=off finalProject -c instructionLoad
+quartus_sta finalProject -c instructionLoad
+quartus_eda --read_settings_files=off --write_settings_files=off finalProject -c instructionLoad
+
+
+
