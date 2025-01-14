@@ -66,7 +66,7 @@ The project simulates key CPU operations, including instruction fetch, decode, e
 ---
 
 ## Original Collaboration
-This repository is a detailed documentation of my contributions and an independent presentation of our collaborative work. The original group repository can be accessed [here](original-repo-link).
+This repository is a detailed documentation of my contributions and an independent presentation of our collaborative work. The original group repository can be accessed [here](https://github.com/KaranpreetRaja/Verilog-RISC-V-Processor).
 
 ---
 
