@@ -82,6 +82,52 @@ This repository is a detailed documentation of my contributions and an independe
 3. Connect a UART-enabled device to load instructions.
 4. Observe register values on a connected VGA monitor.
 
----
-
 For more details, explore the source files and simulations included in this repository.
+
+---
+## Supported RISC-V Instructions
+
+### R-type
+
+| Inst Name | Description (C) | Note |
+|---|---|---|
+| add | `rd = rs1 + rs2` |  |
+| sub | `rd = rs1 - rs2` |  |
+| xor | `rd = rs1 ^ rs2` |  |
+| or  | `rd = rs1 | rs2` |  |
+| and | `rd = rs1 & rs2` |  |
+| sll | `rd = rs1 << rs2` |  |
+| srl | `rd = rs1 >> rs2` |  |
+| sra | `rd = rs1 >> rs2` | msb-extends |
+| slt | `rd = (rs1 < rs2)?1:0` |  |
+| sltu | `rd = (rs1 < rs2)?1:0` | zero-extends | 
+
+### I-type
+
+| Inst Name | Description (C) | Note |
+|---|---|---|
+| addi | `rd = rs1 + imm` |  |
+| xori | `rd = rs1 ^ imm` |  |
+| ori  | `rd = rs1 | imm` |  |
+| andi | `rd = rs1 & imm` |  |
+| slli | `rd = rs1 << imm[0:4]` | imm[5:11]=0x00 |
+| srli | `rd = rs1 >> imm[0:4]` | imm[5:11]=0x00 |
+| srai | `rd = rs1 >> imm[0:4]` | imm[5:11]=0x20, msb-extends |
+| slti | `rd = (rs1 < imm)?1:0` |  |
+| sltiu | `rd = (rs1 < imm)?1:0` | zero-extends |
+| lb   | `rd = M[rs1+imm][0:7]` |  |
+| lh   | `rd = M[rs1+imm][0:15]` |  |
+| lw   | `rd = M[rs1+imm][0:31]` |  |
+| lbu  | `rd = M[rs1+imm][0:7]` | zero-extends |
+| lhu  | `rd = M[rs1+imm][0:15]` | zero-extends |
+
+### S-type
+
+| Inst Name | Description (C) | Note |
+|---|---|---|
+| sb   | `M[rs1+imm][0:7] = rs2[0:7]` |  |
+| sh   | `M[rs1+imm][0:15] = rs2[0:15]` |  |
+| sw   | `M[rs1+imm][0:31] = rs2[0:31]` |  |
+
+
+
