@@ -117,7 +117,7 @@ always @(posedge clk or negedge rst) begin
         case (curr_exmem_state)
             IDLE_EXMEM: begin
                 //input_reg <= input_reg;
-                r_flush_sig <= 1'b0; // Clear flush signal
+                r_flush_sig <= 1'b0; // clear flush signal
 
                 r_mem_read <= r_mem_read;
                 r_mem_write <= r_mem_write;
@@ -179,10 +179,6 @@ always @(*) begin
         end
 
         HOLD: begin
-            // do nothing
-            // if (r_wb_reg_occupied) 
-            //     next_dec_state = PASS;
-            // else
             if (r_wb_reg_occupied_pulse) next_mem_state = PASS;
         end
 

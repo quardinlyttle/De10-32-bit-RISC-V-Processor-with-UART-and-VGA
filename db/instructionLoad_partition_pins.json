@@ -4,27 +4,59 @@
 			"name" : "Top",
 			"pins" : [
 				{
-					"name" : "LEDR[0]",
+					"name" : "VGA_B[0]",
 					"strict" : false
 				},
 				{
-					"name" : "LEDR[1]",
+					"name" : "VGA_B[1]",
 					"strict" : false
 				},
 				{
-					"name" : "LEDR[2]",
+					"name" : "VGA_B[2]",
 					"strict" : false
 				},
 				{
-					"name" : "LEDR[3]",
+					"name" : "VGA_B[3]",
 					"strict" : false
 				},
 				{
-					"name" : "LEDR[4]",
+					"name" : "VGA_G[0]",
 					"strict" : false
 				},
 				{
-					"name" : "LEDR[6]",
+					"name" : "VGA_G[1]",
+					"strict" : false
+				},
+				{
+					"name" : "VGA_G[2]",
+					"strict" : false
+				},
+				{
+					"name" : "VGA_G[3]",
+					"strict" : false
+				},
+				{
+					"name" : "VGA_HS",
+					"strict" : false
+				},
+				{
+					"name" : "VGA_R[0]",
+					"strict" : false
+				},
+				{
+					"name" : "VGA_R[1]",
+					"strict" : false
+				},
+				{
+					"name" : "VGA_R[2]",
+					"strict" : false
+				},
+				{
+					"name" : "VGA_R[3]",
+					"strict" : false
+				},
+				{
+					"name" : "VGA_VS",
 					"strict" : false
 				},
 				{
@@ -36,11 +68,11 @@
 					"strict" : false
 				},
 				{
-					"name" : "MAX10_CLK1_50",
+					"name" : "KEY[0]",
 					"strict" : false
 				},
 				{
-					"name" : "KEY[0]",
+					"name" : "MAX10_CLK1_50",
 					"strict" : false
 				},
 				{

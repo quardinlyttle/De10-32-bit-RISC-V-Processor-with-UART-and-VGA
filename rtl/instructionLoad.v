@@ -1,3 +1,8 @@
+// Description: this module takes in instructions from UART once UART has signaled that there is an instruction ready
+// to be loaded into the program memory. It's done this way as the instructions are given through user input meaning
+// that there are times when the value of instruction bits are all 0. It is important that it is confirmed that there
+// is a valid instruction before loading.
+
 module instructionLoad ( 
     input clk,
     input rst,
@@ -6,22 +11,23 @@ module instructionLoad (
     output o_write_enable,
     output [2:0] o_address,
     output [31:0] o_instruction,
-	 output o_debug_flag
+	output o_debug_flag
 );
 
-reg [31:0] r_instruction = 32'b0;
-reg r_write_enable = 1'b0;
-reg [1:0] r_data_received = 2'b0;
-reg [2:0] r_address = 3'b000;
-reg r_debug_flag = 0;
+reg [31:0] r_instruction    = 32'b0;
+reg r_write_enable          = 1'b0;
+reg [1:0] r_data_received   = 2'b0;
+reg [2:0] r_address         = 3'b000;
+reg r_debug_flag            = 1'b0;
 
-    // State encoding
+// State declaration
 parameter IDLE = 2'b00, 
           RECEIVE = 2'b01, 
           WRITE = 2'b10, 
           ADDR_INCR = 2'b11;
 reg [1:0] curr_state, next_state;
 
+// Edge detection logic 
 always @(posedge clk or negedge rst) begin
     if (!rst) begin
         r_data_received <= 2'b0;
@@ -36,6 +42,7 @@ always @(posedge clk or negedge rst) begin
     else curr_state <= next_state;
 end
 
+// State transition logic
 always @(*) begin
     next_state = curr_state;
     case (curr_state)
@@ -55,6 +62,7 @@ always @(*) begin
     endcase
 end
 
+// State events
 always @(posedge clk or negedge rst) begin 
     if (!rst) begin
         r_instruction <= 32'b0;
@@ -85,6 +93,7 @@ always @(posedge clk or negedge rst) begin
     end
 end
 
+// IO Assignments
 assign o_instruction = r_instruction;
 assign o_write_enable = r_write_enable;
 assign o_address = r_address;

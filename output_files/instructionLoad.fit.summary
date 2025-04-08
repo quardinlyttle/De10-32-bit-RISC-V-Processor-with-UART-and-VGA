@@ -1,18 +1,18 @@
-Fitter Status : Successful - Thu Nov 28 15:22:22 2024
-Quartus Prime Version : 22.1std.0 Build 915 10/25/2022 SC Lite Edition
+Fitter Status : Successful - Thu Nov 28 18:30:16 2024
+Quartus Prime Version : 23.1std.1 Build 993 05/14/2024 SC Lite Edition
 Revision Name : instructionLoad
 Top-level Entity Name : DE10_LITE_Golden_Top
 Family : MAX 10
 Device : 10M50DAF484C7G
 Timing Models : Final
-Total logic elements : 3,282 / 49,760 ( 7 % )
-    Total combinational functions : 2,398 / 49,760 ( 5 % )
-    Dedicated logic registers : 2,152 / 49,760 ( 4 % )
-Total registers : 2152
+Total logic elements : 29,996 / 49,760 ( 60 % )
+    Total combinational functions : 19,761 / 49,760 ( 40 % )
+    Dedicated logic registers : 20,676 / 49,760 ( 42 % )
+Total registers : 20676
 Total pins : 185 / 360 ( 51 % )
 Total virtual pins : 0
 Total memory bits : 0 / 1,677,312 ( 0 % )
 Embedded Multiplier 9-bit elements : 0 / 288 ( 0 % )
-Total PLLs : 0 / 4 ( 0 % )
+Total PLLs : 1 / 4 ( 25 % )
 UFM blocks : 0 / 1 ( 0 % )
 ADC blocks : 0 / 2 ( 0 % )

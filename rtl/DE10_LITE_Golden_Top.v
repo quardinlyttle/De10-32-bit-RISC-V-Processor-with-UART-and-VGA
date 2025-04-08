@@ -244,7 +244,7 @@ instructionFetch if1(
     .i_flush(SW[0]),
     .o_instruction(if1_id1_instruction),
     .o_data_ready(if1_id1_data_ready),
-	.o_debug_flag(LEDR[9:6])
+	.o_debug_flag()
 );
 
 instructionDecoder id1(
@@ -307,6 +307,9 @@ dataMemory dm1(
 	.o_debug_flag()
 );
 
+	// Register file signals
+    wire [31:0] reg_values [0:31];
+
 
 registerFile rf1 (    
     .clk(clk),
@@ -319,8 +322,113 @@ registerFile rf1 (
     .i_write_data(dm1_rf1_write_data),
     .o_flush(rf1_dm1_flush),
     .i_data_ready(dm1_rf1_data_ready),
-	.o_debug_flag({LEDR[4:0]})
+	//.o_debug_flag({LEDR[4],LEDR[3],LEDR[2],LEDR[1],LEDR[0]}),
+	.o_reg_array0(reg_values[0]),
+	  .o_reg_array1(reg_values[1]),
+	  .o_reg_array2(reg_values[2]),
+	  .o_reg_array3(reg_values[3]),
+	  .o_reg_array4(reg_values[4]),
+	  .o_reg_array5(reg_values[5]),
+	  .o_reg_array6(reg_values[6]),
+	  .o_reg_array7(reg_values[7]),
+	  .o_reg_array8(reg_values[8]),
+	  .o_reg_array9(reg_values[9]),
+	  .o_reg_array10(reg_values[10]),
+	  .o_reg_array11(reg_values[11]),
+	  .o_reg_array12(reg_values[12]),
+	  .o_reg_array13(reg_values[13]),
+	  .o_reg_array14(reg_values[14]),
+	  .o_reg_array15(reg_values[15]),
+	  .o_reg_array16(reg_values[16]),
+	  .o_reg_array17(reg_values[17]),
+	  .o_reg_array18(reg_values[18]),
+	  .o_reg_array19(reg_values[19]),
+	  .o_reg_array20(reg_values[20]),
+	  .o_reg_array21(reg_values[21]),
+	  .o_reg_array22(reg_values[22]),
+	  .o_reg_array23(reg_values[23]),
+	  .o_reg_array24(reg_values[24]),
+	  .o_reg_array25(reg_values[25]),
+	  .o_reg_array26(reg_values[26]),
+	  .o_reg_array27(reg_values[27]),
+	  .o_reg_array28(reg_values[28]),
+	  .o_reg_array29(reg_values[29]),
+	  .o_reg_array30(reg_values[30]),
+	  .o_reg_array31(reg_values[31])
 );
+
+ // Clock devider (PLL) at 25MHz
+ wire pixel_clk;
+ pll pll (
+	  .inclk0(MAX10_CLK1_50),
+	  .c0(pixel_clk)
+ );
+
+// Display interface signals
+ wire [7:0] text_data;
+ wire [11:0] text_addr;
+ wire text_we;
+
+ // text writer instance
+ text_writer #(
+	  .COLS(80),
+	  .ROWS(32)
+ ) writer (
+	  .clk(pixel_clk),
+	  .reset_n(negReset),
+	  .reg0(reg_values[0]),
+	  .reg1(reg_values[1]),
+	  .reg2(reg_values[2]),
+	  .reg3(reg_values[3]),
+	  .reg4(reg_values[4]),
+	  .reg5(reg_values[5]),
+	  .reg6(reg_values[6]),
+	  .reg7(reg_values[7]),
+	  .reg8(reg_values[8]),
+	  .reg9(reg_values[9]),
+	  .reg10(reg_values[10]),
+	  .reg11(reg_values[11]),
+	  .reg12(reg_values[12]),
+	  .reg13(reg_values[13]),
+	  .reg14(reg_values[14]),
+	  .reg15(reg_values[15]),
+	  .reg16(reg_values[16]),
+	  .reg17(reg_values[17]),
+	  .reg18(reg_values[18]),
+	  .reg19(reg_values[19]),
+	  .reg20(reg_values[20]),
+	  .reg21(reg_values[21]),
+	  .reg22(reg_values[22]),
+	  .reg23(reg_values[23]),
+	  .reg24(reg_values[24]),
+	  .reg25(reg_values[25]),
+	  .reg26(reg_values[26]),
+	  .reg27(reg_values[27]),
+	  .reg28(reg_values[28]),
+	  .reg29(reg_values[29]),
+	  .reg30(reg_values[30]),
+	  .reg31(reg_values[31]),
+	  .text_data(text_data),
+	  .text_addr(text_addr),
+	  .text_we(text_we)
+ );
+
+ // main display module
+ vga_display display (
+	  .clk(pixel_clk),
+	  .reset_n(negReset),
+	  .text_data(text_data),
+	  .text_addr(text_addr),
+	  .text_we(text_we),
+	  .vga_hsync(VGA_HS),
+	  .vga_vsync(VGA_VS),
+	  .vga_r(VGA_R),
+	  .vga_g(VGA_G),
+	  .vga_b(VGA_B)
+ );
+
+
+
 
 // =======================================================
 //  UART Communication and LED Control Logic

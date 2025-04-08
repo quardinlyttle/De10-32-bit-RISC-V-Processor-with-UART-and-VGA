@@ -1,4 +1,10 @@
 
+State Machine - |DE10_LITE_Golden_Top|text_writer:writer|state
+Name state.IDLE state.WRITE_REGISTERS state.WRITE_HEADER 
+state.IDLE 0 0 0 
+state.WRITE_HEADER 1 0 1 
+state.WRITE_REGISTERS 1 1 0 
+
 State Machine - |DE10_LITE_Golden_Top|registerFile:rf1|curr_state
 Name curr_state.FLUSH curr_state.WRITE curr_state.BUFFER curr_state.IDLE 
 curr_state.IDLE 0 0 0 0 
@@ -75,6 +81,11 @@ State Machine - |DE10_LITE_Golden_Top|instructionFetch:if1|curr_pc_state
 Name curr_pc_state.INCR 
 curr_pc_state.IDLE_PC 0 
 curr_pc_state.INCR 1 
+
+State Machine - |DE10_LITE_Golden_Top|instructionFetch:if1|curr_load_state
+Name curr_load_state.RECEIVE 
+curr_load_state.IDLE_IM 0 
+curr_load_state.RECEIVE 1 
 
 State Machine - |DE10_LITE_Golden_Top|instructionLoad:il|curr_state
 Name curr_state.ADDR_INCR curr_state.WRITE curr_state.RECEIVE curr_state.IDLE 

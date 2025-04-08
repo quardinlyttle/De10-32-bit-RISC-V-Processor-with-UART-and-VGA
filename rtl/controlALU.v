@@ -5,12 +5,12 @@ module controlALU (
     input i_mem_read,
     input i_mem_write,
     input [4:0] i_rd,
-    input [31:0] i_operand1,      // First operand
-    input [31:0] i_operand2,      // Second operand
-    input [4:0] i_ALUOp,          // Control signal to select the operation
+    input [31:0] i_operand1,     
+    input [31:0] i_operand2,      
+    input [4:0] i_ALUOp,       
     input i_dec_ins_ready,
-    output [31:0] o_result,   // Result of the operation
-    output zero,             // Zero flag for branching
+    output [31:0] o_result,  
+    output zero,            
     output o_flush,
     output o_mem_read,
     output o_mem_write,
@@ -19,52 +19,54 @@ module controlALU (
     output [4:0]o_debug_flag
 );
 
-reg [1:0] r_id_ready_delay = 0; //when id side of idex is ready
-reg r_ex_ready = 0;
-reg r_begin_alu = 0;
-reg [1:0]r_begin_alu_delay = 0;
-reg [1:0] r_ex_ready_delay = 0; // once stored begin the ALU operations
+reg r_ex_ready             = 1'b0;
+reg [1:0] r_id_ready_delay = 2'b0; 
+reg r_begin_alu            = 1'b0;
+reg [1:0]r_begin_alu_delay = 1'b0;
+reg [1:0] r_ex_ready_delay = 1'b0; 
+reg [1:0] r_alu_fin_delay  = 1'b0;
+reg r_flush_sig            = 1'b0;
+reg [31:0] r_operand1      = 1'b0;      
+reg [31:0] r_operand2      = 1'b0;      
+reg [4:0] r_ALUOp          = 1'b0;         
+reg r_mem_read             = 1'b0;
+reg r_mem_write            = 1'b0;
+reg [4:0] r_rd             = 1'b0;
+reg [31:0] r_result        = 1'b0;
+reg r_exmem_reg_occupied   = 1'b0;
+reg r_exmem_mem_read       = 1'b0;
+reg r_exmem_mem_write      = 1'b0;
+reg [4:0] r_exmem_rd       = 1'b0;
+reg [4:0] DEBUG_FLAG       = 1'b0;
+reg [31:0] r_exmem_result  = 1'b0;
+
 wire r_alu_fin;
-reg [1:0] r_alu_fin_delay = 0;
-reg r_flush_sig = 0;
-reg [31:0] r_operand1 = 0;      // First operand
-reg [31:0] r_operand2 = 0;      // Second operand
-reg [4:0] r_ALUOp = 0;          // Control signal to select the operation
-reg r_mem_read = 0;
-reg r_mem_write = 0;
-reg [4:0] r_rd = 0;
-reg [31:0] r_result = 0;
-reg r_exmem_reg_occupied = 0;
-reg r_exmem_mem_read = 0;
-reg r_exmem_mem_write = 0;
-reg [4:0] r_exmem_rd = 0;
-reg [4:0] DEBUG_FLAG = 0;
-reg [31:0] r_exmem_result = 0;
 wire r_result_ready;
 // ALU operation codes (encoded control signals)
-parameter ALU_ADD   = 5'b0000;  // Addition
-parameter ALU_SUB   = 5'b0001;  // Subtraction
-parameter ALU_AND   = 5'b0010;  // Logical AND
-parameter ALU_OR    = 5'b0011;  // Logical OR
-parameter ALU_XOR   = 5'b0100;  // Logical XOR
-parameter ALU_SLL   = 5'b0101;  // Logical left shift
-parameter ALU_SRL   = 5'b0110;  // Logical right shift
-parameter ALU_SRA   = 5'b0111;  // Arithmetic right shift
-parameter ALU_SLT   = 5'b1000;  // Set less than
-parameter ALU_SLTU  = 5'b1001;  // Set less than unsigned
-parameter ALU_ADDI  = 5'b1010;  // Addition immediate
-parameter ALU_XORI  = 5'b1011;  // XOR immediate
-parameter ALU_ORI   = 5'b1100;  // OR immediate
-parameter ALU_ANDI  = 5'b1101;  // AND immediate
-parameter ALU_SLLI  = 5'b1110;  // Logical left shift immediate
-parameter ALU_SRLI  = 5'b1111;  // Logical right shift immediate
-parameter ALU_SRAI  = 5'b10000; // Arithmetic right shift immediate
-parameter ALU_SLTI  = 5'b10001; // Set less than immediate
-parameter ALU_SLTIU = 5'b10010; // Set less than unsigned immediate
-parameter ALU_SW = 5'b10100; // Set less than unsigned immediate
+parameter ALU_ADD          = 5'b0000;  // Addition
+parameter ALU_SUB          = 5'b0001;  // Subtraction
+parameter ALU_AND          = 5'b0010;  // Logical AND
+parameter ALU_OR           = 5'b0011;  // Logical OR
+parameter ALU_XOR          = 5'b0100;  // Logical XOR
+parameter ALU_SLL          = 5'b0101;  // Logical left shift
+parameter ALU_SRL          = 5'b0110;  // Logical right shift
+parameter ALU_SRA          = 5'b0111;  // Arithmetic right shift
+parameter ALU_SLT          = 5'b1000;  // Set less than
+parameter ALU_SLTU         = 5'b1001;  // Set less than unsigned
+parameter ALU_ADDI         = 5'b1010;  // Addition immediate
+parameter ALU_XORI         = 5'b1011;  // XOR immediate
+parameter ALU_ORI          = 5'b1100;  // OR immediate
+parameter ALU_ANDI         = 5'b1101;  // AND immediate
+parameter ALU_SLLI         = 5'b1110;  // Logical left shift immediate
+parameter ALU_SRLI         = 5'b1111;  // Logical right shift immediate
+parameter ALU_SRAI         = 5'b10000; // Arithmetic right shift immediate
+parameter ALU_SLTI         = 5'b10001; // Set less than immediate
+parameter ALU_SLTIU        = 5'b10010; // Set less than unsigned immediate
+parameter ALU_SW           = 5'b10100; // Set less than unsigned immediate
 
 reg r_exmem_reg_occupied_pulse;
-// FOR ANY DELAYS
+
+// DELAY LOGIC //
 always @(posedge clk or negedge rst) begin
     if (!rst) begin
         r_id_ready_delay <= 2'b0;
@@ -77,6 +79,7 @@ always @(posedge clk or negedge rst) begin
     end
 end
 
+// PULSE LOGIC //
 always @(posedge clk or negedge rst) begin
     if (!rst) begin
         r_exmem_reg_occupied_pulse <= 1'b0;
@@ -85,11 +88,14 @@ always @(posedge clk or negedge rst) begin
     end
 end
 
+// IDEX PIPELINE RECEPTION  //
 parameter IDLE_EX = 2'b00, 
           STORE = 2'b01,
           FLUSH = 2'b10;
 
 reg [1:0] curr_ex_state, next_ex_state;
+
+// 
 
 always @(posedge clk or negedge rst) begin
     if (!rst) curr_ex_state <= IDLE_EX;

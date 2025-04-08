@@ -1,16 +1,16 @@
-Analysis & Synthesis Status : Successful - Thu Nov 28 15:21:42 2024
-Quartus Prime Version : 22.1std.0 Build 915 10/25/2022 SC Lite Edition
+Analysis & Synthesis Status : Successful - Thu Nov 28 18:22:53 2024
+Quartus Prime Version : 23.1std.1 Build 993 05/14/2024 SC Lite Edition
 Revision Name : instructionLoad
 Top-level Entity Name : DE10_LITE_Golden_Top
 Family : MAX 10
-Total logic elements : 4,178
-    Total combinational functions : 2,397
-    Dedicated logic registers : 2,152
-Total registers : 2152
+Total logic elements : 39,930
+    Total combinational functions : 19,759
+    Dedicated logic registers : 20,676
+Total registers : 20676
 Total pins : 185
 Total virtual pins : 0
 Total memory bits : 0
 Embedded Multiplier 9-bit elements : 0
-Total PLLs : 0
+Total PLLs : 1
 UFM blocks : 0
 ADC blocks : 0
